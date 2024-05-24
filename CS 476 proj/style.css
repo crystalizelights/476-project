@@ -1,0 +1,26 @@
+footer{
+    margin-bottom: 0;
+    box-shadow: 0 -3px 10px 3px rgba(0, 0, 0, 0.2);
+    height: 180px;
+    margin-top: auto;
+}
+
+body{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+}
+
+input {
+    margin: 5px 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 80%;
+}
+
+input:focus {
+    outline: none;
+    border-color: rgb(221, 14, 14);
+}
