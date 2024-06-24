@@ -1,0 +1,89 @@
+<!doctype html>
+<link rel="stylesheet" type="text/css" href="style.css">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {%load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src ="https://cdn.tailwindcss.com"></script>
+
+        <title>Welcome-- My proj</title>
+    </head>
+
+    <body class="bg-gray-50">
+        <nav class="sticky top-0 px-6 py-5 flex justify-between items-center border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-md">
+            <a href="{% url 'vendor:index' %}" class="text-2xl font-semibold text-white">Vendor website</a>
+
+            <div class="space-x-6 flex items-center ">
+                <a href="{% url 'stores:new' %}" class="text-lg font-semibold text-gray-800 dark:text-gray-100 hover:text-gray-500 dark:hover:text-white">Add store</a>
+                <a href="{% url 'my_store:index' %}" class="text-lg font-semibold text-gray-800 dark:text-gray-100 hover:text-gray-500 dark:hover:text-white">My store</a>
+                <a href="#" class="text-lg font-semibold text-gray-800 dark:text-gray-100 hover:text-gray-500 dark:hover:text-white">Reviews</a>
+
+                <a href="{% url 'vendor:signup' %}" class="px-6 py-3 text-lg font-semibold bg-blue-500 text-white rounded-xl hover:bg-blue-700">Sign up</a>
+                <a href="{% url 'vendor:login' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Log in</a>
+            </div>
+        </nav>
+        
+        <div class="w-1/2 my-6 mx-auto p-6 bg-gray-100 rounded-xl">
+            <h1 class="mb-6 text-3xl">Sign up</h1>
+        
+            <form method="post" action=".">
+                {% csrf_token %}
+        
+                <div class="mb-3">
+                    <label class="inline-block mb-2">Username</label><br>
+                    {{ form.username }}
+                </div>
+        
+                <div class="mb-3">
+                    <label class="inline-block mb-2">Email</label><br>
+                    {{ form.email }}
+                </div>
+        
+                <div class="mb-3">
+                    <label class="inline-block mb-2">Password</label><br>
+                    {{ form.password1 }}
+                </div>
+        
+                <div class="mb-3">
+                    <label class="inline-block mb-2">Repeat password</label><br>
+                    {{ form.password2 }}
+                </div>
+        
+                {% if form.errors or form.non_field_errors %}
+                    <div class="mb-3 p-6 bg-red-100 rounded-xl">
+                        {% for field in form %}
+                            {{ field.errors }}
+                        {% endfor %}
+        
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+        
+                <button class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Submit</button>
+            </form>
+        </div>
+        
+
+        <footer class="px-6 py-6 flex justify-between bg-gray-800">
+            <div class="w-2/3 pr-10">
+                <h3 class="mb-5 font-semibold text-gray-400">About</h3>
+
+                <p class="text-lg text-gray-500">Vendor promotional website</p>
+            </div>
+
+            <div class="w-1/3">
+                <h3 class="mb-5 font-semibold text-gray-400">Menu</h3>
+                <ul class="space-y-2">
+                    <li><a href="/" class="text-lg text-teal-500 hover:text-yellow-700">About</a> </li>
+                    <li><a href="/" class="text-lg text-teal-500 hover:text-yellow-700">Contact</a> </li>
+                    <li><a href="/" class="text-lg text-teal-500 hover:text-yellow-700">Privacy</a> </li>
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>
+
+
