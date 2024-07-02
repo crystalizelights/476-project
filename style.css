@@ -38,3 +38,9 @@ input:focus {
     background-color: #eee;
     border-radius: 50%;
   }
+
+.uploadCustom {
+    font-size: 20px;
+}
+
+.uploadCustom
