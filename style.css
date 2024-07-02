@@ -45,5 +45,12 @@ input:focus {
 
 .uploadCustom::-webkit-file-upload-button{
     border-radius: 50px;
-    border-style: solid ;
+    border-style: solid;
+}
+
+.saveButton{
+    position: fixed;
+    background-color: white;
+    border-radius: 50px;
+    border-style: solid;
 }
