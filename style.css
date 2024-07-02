@@ -24,7 +24,11 @@ input:focus {
     outline: none;
     border-color: rgb(221, 14, 14);
 }
-
+.center {
+    max-width: 600px;
+    margin: auto;
+    padding: 10px;
+}
 .radioCustom {
     position: absolute;
     top: 0;
