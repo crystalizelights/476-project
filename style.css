@@ -43,4 +43,7 @@ input:focus {
     font-size: 20px;
 }
 
-.uploadCustom
+.uploadCustom::-webkit-file-upload-button{
+    border-radius: 50px;
+    border-style: solid ;
+}
