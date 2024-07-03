@@ -1,0 +1,13 @@
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    ;
+}
+
+.footer1 {
+    justify-self: end;
+    width: 100vw;
+    bottom: 0;
+    position: fixed;
+}
