@@ -11,8 +11,22 @@
         <title>Settings | 476 Group project</title>
     </head>
 
-    <body>
-        <div class = "items-center">
+    <body class="bg-gray-50">
+        <nav class="header">
+        <div class="logo-container">
+            <img src="{% static 'images/iconWomen.jpg' %}" class="logo-img">
+            <a class="logo-text" href="{% url 'vendor:index' %}">Vendors website</a>
+        </div>
+        <div class="nav-links">
+            <a href="{% url 'stores:new' %}" class="nav-link">Add store</a>
+            <a href="{% url 'my_store:index' %}" class="nav-link">My store</a>
+            <a href="#" class="nav-link">Reviews</a>
+            <a href="{% url 'vendor:signup' %}" class="btn btn-signup">Sign up</a>
+            <a href="{% url 'vendor:login' %}" class="btn btn-login">Log in</a>
+        </div>
+        </nav>
+    
+        <div class = "items-center justify-center">
         <h1> User Settings </h1>
         <div class= "w-48 my-6 mx-auto p-6 bg-gray-100 rounded-xl"> 
             <h3> Select Role</h3>
