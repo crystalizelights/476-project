@@ -4,8 +4,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{% static 'css/userSettingsPage.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}">
+        <link rel="stylesheet" href="{% static 'css/userSettingsPage.css' %}">
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src ="https://cdn.tailwindcss.com"></script>
 
@@ -46,10 +46,11 @@
             <input type="radio" class = "w-4 h-4 hover:bg-teal-500 hover:bg-opacity-80" value = "Seller"> 
             <span class="radioCustom"></span>
         </div> 
-            <h3> User Image</h3> 
-            <input type="file" class="uploadCustom">
-
+            <h3> User Image <input type="file" class="uploadCustom"> </h3> 
+            
+        <div class ="flex items-center justify-center w-full pt-6"> 
             <input type="submit" class= "saveButton" value="Continue">
+            </div>
         </form>
         </div>
 
