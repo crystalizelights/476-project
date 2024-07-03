@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}">
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="{% static 'css/userSettings.css' %}">
         <script src ="https://cdn.tailwindcss.com"></script>
 
         <title>Settings | 476 Group project</title>
@@ -26,9 +27,8 @@
         </div>
         </nav>
     
-        <div class = "items-center justify-center">
-        <h1> User Settings </h1>
-        <div class= "w-48 my-6 mx-auto p-6 bg-gray-100 rounded-xl"> 
+        <div class = "h-screen flex items-center justify-center">
+        <h1> User Settings </h1> 
             <h3> Select Role</h3>
         <form id="userSettings">
             <label class="container"> Viewer
@@ -43,7 +43,6 @@
 
             <input type="submit" class= "saveButton" value="Submit"> Continue
         </form>
-        </div>
         </div>
         <footer class="footer1">
             <div class="footer-about">

@@ -1,0 +1,25 @@
+.radioCustom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+
+.uploadCustom {
+    font-size: 20px;
+}
+
+.uploadCustom::-webkit-file-upload-button{
+    border-radius: 50px;
+    border-style: solid;
+}
+
+.saveButton{
+    position: fixed;
+    background-color: white;
+    border-radius: 50px;
+    border-style: solid;
+}
