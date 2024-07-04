@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'stores',
     'my_store',
     'livereload',
+    'reviews',
 ]
 
 MIDDLEWARE = [
