@@ -1,99 +1,106 @@
 <!doctype html>
 <link rel="stylesheet" type="text/css" href="style.css">
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {%load static %}
-        <link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}">
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" href="{% static 'css/store.css' %}">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@600;700&display=swap" rel="stylesheet">
-        <script src="https://cdn.tailwindcss.com"></script>
-       
-        <script src ="https://cdn.tailwindcss.com"></script>
-        
 
-        <title>Welcome | My proj</title>
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/storePage.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Welcome</title>
+</head>
 
-    <body class="bg-gray-50">
-        <nav class="header">
-            <div class="logo-container">
-                <img src="{% static 'images/iconWomen.jpg' %}" class="logo-img">
-                <a class="logo-text" href="{% url 'vendor:index' %}">Vendors website</a>
-            </div>
-            <div class="nav-links">
-                <a href="{% url 'stores:new' %}" class="nav-link">Add store</a>
-                <a href="{% url 'my_store:index' %}" class="nav-link">My store</a>
-                <a href="#" class="nav-link">Reviews</a>
-                <a href="{% url 'vendor:signup' %}" class="btn btn-signup">Sign up</a>
-                <a href="{% url 'vendor:login' %}" class="btn btn-login">Log in</a>
-            </div>
-        </nav>
-        <div class="px-6 py-6 bg-gray-50 min-h-screen ">
-            <h1 class="mb-12 text-3xl text-center font-semibold"><b>{{store.name}} Store</b></h1>
-            <div class="max-w-7xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
-                <!--<div class="grid grid-cols-5 gap-6">-->
-                    <div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-                        <div class="bg-gray-200 rounded-b-xl"><img src="{{store.image.url}}" class="rounded-xl w-full object-cover pb-3  h-64 rounded-t-xl">
-                        <p class="text-lg text-gray-800 rounded-xl p-5">Item description</p></div>
-                        
-                        <div class="bg-gray-200 rounded-b-xl"><img src="{{store.image1.url}}" class="rounded-xl w-full object-cover pb-3 h-64 rounded-t-xl">
-                            <p class="text-lg text-gray-800 p-5">Item description</p></div>
-
-                        <div class="bg-gray-200 rounded-b-xl"><img src="{{store.image2.url}}" class="rounded-xl w-full object-cover pb-3 h-64 rounded-t-xl">
-                                <p class="text-lg text-gray-800 p-5">Item description</p></div>
+<body class="bg-gray-50">
+    <nav class="header">
+        <div class="logo-container">
+            <img src="{% static 'images/iconWomen.jpg' %}" class="logo-img">
+            <a class="logo-text" href="{% url 'vendor:index' %}">Vendors website</a>
+        </div>
+        <div class="nav-links">
+            <a href="{% url 'stores:new' %}" class="nav-link">Add store</a>
+            <a href="{% url 'my_store:index' %}" class="nav-link">My store</a>
+            <a href="#" class="nav-link">Reviews</a>
+            <a href="{% url 'vendor:signup' %}" class="btn btn-signup">Sign up</a>
+            <a href="{% url 'vendor:login' %}" class="btn btn-login">Log in</a>
+        </div>
+    </nav>
+    <div class="main-container">
+        <h1 class="store-name"><b>{{store.name}} Store</b></h1>
+        <div class="">
+            <!--<div class="grid grid-cols-5 gap-6">-->
+            <div>
+                <div class="store-detail-container">
+                    <div class="store">
+                        <img src="{{store.image.url}}" class="store-image">
+                        <p class="store-text">Item description</p>
                     </div>
-                    <div class="p-6">
-                        
-                        {% if store.description %}
-                        <p class="text-gray-700 mb-6 text-2xl text-center">
-                            <strong class="text-gray-800 text-3xl" >About:</strong><br>
-                            {{store.description}}
+                    <div class="store">
+                        <img src="{{store.image1.url}}" class="store-image">
+                        <p class="store-text">Item description</p>
+                    </div>
+                    <div class="store">
+                        <img src="{{store.image2.url}}" class="store-image">
+                        <p class="store-text">Item description</p>
+                    </div>
+
+
+                </div>
+                <div class="about-section">
+
+                    {% if store.description %}
+                    <h1 class="about">About:</h1><br>
+                    <p class="text-style1">
+
+                        {{store.description}}
+                    </p>
+                    {% endif%}
+                    <div class="more-info-container">
+                        <p class="text-style2">
+                            <strong class="text-style3">Price for each {{store.name}}: </strong>${{store.price}}
                         </p>
-                        {% endif%}
-                        <p class="text-gray-700 mb-4 text-2xl text-center">
-                            <strong class="text-gray-800 text-3xl ">Price for each {{store.name}}: </strong>${{store.price}}
+                        <p class="text-style2">
+                            <strong class="text-style3">Type of store:</strong> {{store.category.name}}
                         </p>
-                        <p class="text-gray-700 mb-4 text-2xl text-center">
-                            <strong class="text-gray-800 text-3xl ">Type of store:</strong> {{store.category.name}} 
+                        <p class="text-style2">
+                            <strong class="text-style3">Seller: </strong>{{store.created_by.username}}
                         </p>
-                        <p class="text-gray-700 mb-4 text-2xl text-center">
-                            <strong class="text-gray-800 text-3xl">Seller: </strong>{{store.created_by.username}}
+                        <p class="text-style2">
+                            <strong class="text-style3">Contact: </strong>{{store.contact}}
                         </p>
-                        <p class="text-gray-700 mb-4 text-2xl text-center">
-                            <strong class="text-gray-800 text-3xl">Contact: </strong>{{store.contact}}
+                        <p class="text-style2">
+                            <strong class="text-style3">Address: </strong>{{store.address}}
                         </p>
-                        <p class="text-gray-700 mb-4 text-2xl text-center">
-                            <strong class="text-gray-800 text-3xl">Address: </strong>{{store.address}}
-                        </p>
-        
-        
-                        <div class="mt-6 p-6 bg-gray-200 rounded-xl shadow-inner text-center">
+                    </div>
+
+                    <div class="mt-6 p-6 bg-gray-200 rounded-xl shadow-inner text-center">
                         {% if request.user == store.created_by %}
-                            <h3 class="text-lg font-semibold text-gray-600">Would you like to edit or delete your {{store.name}} store?.</h3>
-                            <a href="{% url 'stores:edit' store.id %}"
-                               class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-blue-500 text-white rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-200">
-                               Edit
-                            </a>
-                            <a href="{% url 'stores:delete' store.id %}"
-                               class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-xl hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-200">
-                               Delete
-                            </a>
-                        </div>
-                        {% else %}
-                        <a href="#"
-                           class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-200">
-                           Leave a review!
+                        <h3 class="text-lg font-semibold text-gray-600">Would you like to edit or delete your
+                            {{store.name}} store?.</h3>
+                        <a href="{% url 'stores:edit' store.id %}"
+                            class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-blue-500 text-white rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-200">
+                            Edit
                         </a>
-                        {% endif %}
+                        <a href="{% url 'stores:delete' store.id %}"
+                            class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-xl hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-200">
+                            Delete
+                        </a>
                     </div>
+                    {% else %}
+                    <a href="#"
+                        class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-200">
+                        Leave a review!
+                    </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 
@@ -113,7 +120,6 @@
         </div>
     </footer>
 
-    </body>
+</body>
+
 </html>
-
-
