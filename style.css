@@ -48,12 +48,6 @@ input:focus {
     border-style: solid;
 }
 
-.saveButton{
-    position: fixed;
-    background-color: white;
-    border-radius: 50px;
-    border-style: solid;
-}
 
 /* General styles */
 body {
