@@ -1,1 +1,11 @@
 /Django proj/myproj/my_store/__pycache__
+*.log
+*.pot
+*.pyc
+venv/
+env/
+.idea/
+.vscode/
+.DS_Store
+*.env
+.env.*
