@@ -1,84 +1,87 @@
 <!doctype html>
 <link rel="stylesheet" type="text/css" href="style.css">
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {%load static %}
-        <link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" href="{% static 'css/loginPage.css' %}">
-        <script src ="https://cdn.tailwindcss.com"></script>
 
-        <title>Welcome-- My proj</title>
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/loginPage.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <body >
-        <nav class="header">
-            <div class="logo-container">
-                <img src="{% static 'images/iconWomen.jpg' %}" class="logo-img">
-                <a class="logo-text" href="{% url 'vendor:index' %}">Vendors website</a>
-            </div>
-            <div class="nav-links">
-                <a href="{% url 'stores:new' %}" class="nav-link">Add store</a>
-                <a href="{% url 'my_store:index' %}" class="nav-link">My store</a>
-                <a href="#" class="nav-link">Reviews</a>
-                <a href="{% url 'vendor:signup' %}" class="btn btn-signup">Sign up</a>
-                <a href="{% url 'vendor:login' %}" class="btn btn-login">Log in</a>
-            </div>
-        </nav>
-        
-        <div class="w-1/2 my-6 mx-auto p-6 bg-gray-100 rounded-xl">
-            <h1 class="mb-6 text-3xl">Log in</h1>
-        
+    <title>Login</title>
+</head>
+
+<body>
+    <nav class="header">
+        <div class="logo-container">
+            <img src="{% static 'images/iconWomen.jpg' %}" class="logo-img">
+            <a class="logo-text" href="{% url 'vendor:index' %}">Vendors website</a>
+        </div>
+        <div class="nav-links">
+            <a href="{% url 'stores:new' %}" class="nav-link">Add store</a>
+            <a href="{% url 'my_store:index' %}" class="nav-link">My store</a>
+            <a href="#" class="nav-link">Reviews</a>
+            <a href="{% url 'vendor:signup' %}" class="btn btn-signup">Sign up</a>
+            <a href="{% url 'vendor:login' %}" class="btn btn-login">Log in</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <img src="{% static 'images/iconWomen.jpg' %}" class="main-image">
+        <div class="forms-container">
+            <h1 class="h1-style">Log In</h1>
+
             <form method="post" action=".">
                 {% csrf_token %}
-        
+
                 <div class="mb-3">
-                    <label class="inline-block mb-2">Username</label><br>
+                    <label class="text-style1">Username</label><br>
                     {{ form.username }}
                 </div>
-        
+
                 <div class="mb-3">
-                    <label class="inline-block mb-2">Password</label><br>
+                    <label class="text-style1">Password</label><br>
                     {{ form.password }}
                 </div>
-        
+
                 {% if form.errors or form.non_field_errors %}
-                    <div class="mb-3 p-6 bg-red-100 rounded-xl">
-                        {% for field in form %}
-                            {{ field.errors }}
-                        {% endfor %}
-        
-                        {{ form.non_field_errors }}
-                    </div>
+                <div class="mb-3 p-6 bg-red-100 rounded-xl">
+                    {% for field in form %}
+                    {{ field.errors }}
+                    {% endfor %}
+
+                    {{ form.non_field_errors }}
+                </div>
                 {% endif %}
-        
-                <button class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Submit</button>
+
+                <button class="button-style">Submit</button>
             </form>
         </div>
-        
-        
+    </div>
 
-        <footer class="footer1">
-            <div class="footer-about">
-                <h3 class="footer-title">About</h3>
-                <p class="footer-text">Vendor promotional website</p>
-            </div>
-    
-            <div class="footer-menu">
-                <h3 class="footer-title">Menu</h3>
-                <ul class="footer-links">
-                    <li><a href="/" class="footer-link">About</a></li>
-                    <li><a href="/" class="footer-link">Contact</a></li>
-                    <li><a href="/" class="footer-link">Privacy</a></li>
-                </ul>
-            </div>
-        </footer>
 
-        <button id="backToTopBtn" class="back-to-top-btn">↑ Back to Top</button>
 
-    </body>
+    <footer class="footer1">
+        <div class="footer-about">
+            <h3 class="footer-title">About</h3>
+            <p class="footer-text">Vendor promotional website</p>
+        </div>
+
+        <div class="footer-menu">
+            <h3 class="footer-title">Menu</h3>
+            <ul class="footer-links">
+                <li><a href="/" class="footer-link">About</a></li>
+                <li><a href="/" class="footer-link">Contact</a></li>
+                <li><a href="/" class="footer-link">Privacy</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <button id="backToTopBtn" class="back-to-top-btn">↑ Back to Top</button>
+
+</body>
+
 </html>
-
-
