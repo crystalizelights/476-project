@@ -1,1 +1,16 @@
-/Django proj/myproj/my_store/__pycache__
+/Django proj/myproj/my_store/__pycache
+*.log
+*.pot
+*.pyc
+__pycache__/
+venv/
+env/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.bak
+*.env
+.env.*
+.mypy_cache/
+
