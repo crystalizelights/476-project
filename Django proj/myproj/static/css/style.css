@@ -251,7 +251,7 @@ body {
 /* Footer styles */
 .footer1,
 .header {
-    background-color: rgb(31 41 55);
+    background: linear-gradient(135deg, #242132, #484574);
     box-shadow: 0 -3px 10px 3px rgba(0, 0, 0, 0.2);
     padding: 1.5rem;
     display: flex;
