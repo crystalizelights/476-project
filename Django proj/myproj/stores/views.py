@@ -34,6 +34,16 @@ def detail(request, pk):
         'store': store,
         'related_stores': related_stores
     })
+
+def itemdetail(request, pk):
+    item = get_object_or_404(Stores, pk=pk)
+    related_stores = Stores.objects.filter(category=store.category, is_sold=False).exclude(pk=pk)[0:3]
+
+    return render(request, 'stores/itemdetail.html', {
+        'store': item,
+        'related_stores': related_stores
+    })
+
 @login_required
 def new(request):
     if request.method == 'POST':

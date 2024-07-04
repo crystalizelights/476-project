@@ -25,6 +25,12 @@ class Stores(models.Model):
     is_sold = models.BooleanField(default=False)
     created_by = models.ForeignKey(User, related_name="stores", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+    item1description = models.TextField(blank=True, null=True)
+    item2description = models.TextField(blank=True, null=True)
+    item3description = models.TextField(blank=True, null=True)
+    item1name = models.CharField(max_length=255, blank=True, null=True)
+    item2name = models.CharField(max_length=255, blank=True, null=True)
+    item3name = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.name

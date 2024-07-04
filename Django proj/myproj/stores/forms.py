@@ -7,7 +7,7 @@ INPUT_CLASSES = 'w-full py-4 px-6 rounded-xl border-gray-300 focus:border-teal-5
 class NewStore(forms.ModelForm):
     class Meta:
         model = Stores
-        fields = {'category', 'name', 'description', 'price', 'image', 'image1', 'image2', 'contact', 'address'}
+        fields = {'category', 'name', 'description', 'price', 'image', 'image1', 'image2', 'contact', 'address', 'item1name','item2name', 'item3name'}
         widgets = {
             'category': forms.Select(attrs={
                 'class': INPUT_CLASSES + ' bg-white',
@@ -42,13 +42,25 @@ class NewStore(forms.ModelForm):
                 'class': INPUT_CLASSES,
                 'placeholder': 'Store address'
             }),
+            'item1name': forms.TextInput(attrs={
+                'class': INPUT_CLASSES,
+                'placeholder': 'Item 1 Name'
+            }),
+            'item2name': forms.TextInput(attrs={
+                'class': INPUT_CLASSES,
+                'placeholder': 'Item 2 Name'
+            }),
+            'item3name': forms.TextInput(attrs={
+                'class': INPUT_CLASSES,
+                'placeholder': 'Item 3 Name'
+            }),
         }
 
 
 class EditStore(forms.ModelForm):
         class Meta:
             model = Stores
-            fields = {'name', 'description', 'price', 'image', 'is_sold', 'image1', 'image2', 'contact', 'address'}
+            fields = {'name', 'description', 'price', 'image', 'is_sold', 'image1', 'image2', 'contact', 'address', 'item1name', 'item2name', 'item3name'}
             widgets = {               
                 'name': forms.TextInput(attrs={
                     'class': INPUT_CLASSES
@@ -72,8 +84,16 @@ class EditStore(forms.ModelForm):
                     'class': INPUT_CLASSES,                    
                 }),
                 'address': forms.TextInput(attrs={
-                    'class': INPUT_CLASSES,
-                   
+                    'class': INPUT_CLASSES,                  
+                }),
+                'item1name': forms.TextInput(attrs={
+                'class': INPUT_CLASSES,                
+                }),
+                'item2name': forms.TextInput(attrs={
+                    'class': INPUT_CLASSES,                    
+                }),
+                'item3name': forms.TextInput(attrs={
+                    'class': INPUT_CLASSES,                   
                 }),
             }
         
