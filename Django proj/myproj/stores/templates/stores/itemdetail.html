@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image" href="{% static 'images/icon.png' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Search for stores by name
+            $("#searchInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#itemsContainer .item").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+
+            // Show "Back to Top" button
+            var btn = $('#backToTopBtn');
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > 300) {
+                    btn.addClass('flex');
+                    btn.removeClass('hidden');
+                } else {
+                    btn.addClass('hidden');
+                    btn.removeClass('flex');
+                }
+            });
+
+            btn.on('click', function (e) {
+                e.preventDefault();
+                $('html, body').animate({ scrollTop: 0 }, '300');
+            });
+        });
+    </script>
+    <title>Welcome | Vendors</title>
+</head>
+
+<body class="bg-gray-50">
+    <nav class="header">
+        <div class="logo-container">
+            <img src="{% static 'images/iconWomen.jpg' %}" class="logo-img">
+            <a class="logo-text" href="{% url 'vendor:index' %}">Vendors website</a>
+        </div>
+        <div class="nav-links">
+            <a href="{% url 'stores:new' %}" class="nav-link">Add store</a>
+            <a href="{% url 'my_store:index' %}" class="nav-link">My store</a>
+            <a href="#" class="nav-link">Reviews</a>
+            <a href="{% url 'vendor:signup' %}" class="btn btn-signup">Sign up</a>
+            <a href="{% url 'vendor:login' %}" class="btn btn-login">Log in</a>
+        </div>
+    </nav>
+    
+
+    <footer class="footer1">
+        <div class="footer-about">
+            <h3 class="footer-title">About</h3>
+            <p class="footer-text">Vendor promotional website</p>
+        </div>
+
+        <div class="footer-menu">
+            <h3 class="footer-title">Menu</h3>
+            <ul class="footer-links">
+                <li><a href="/" class="footer-link">About</a></li>
+                <li><a href="/" class="footer-link">Contact</a></li>
+                <li><a href="/" class="footer-link">Privacy</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTopBtn" class="back-to-top-btn">↑ Back to Top</button>
+</body>
+
+</html>
