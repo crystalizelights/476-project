@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'my_store',
     'livereload',
     'reviews',
-]
+   
+  
+] 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -10,7 +10,8 @@ urlpatterns = [
     path('', include('vendor.urls')),
     path('stores/', include('stores.urls')),
     path('my_store/' , include('my_store.urls')),
-    #path('index/', include('review.urls')),
+    path('inbox/', include('vendor.urls')),
+    #path('reviews/', include('review.urls')),
     path('admin/', admin.site.urls),
 
 ]   +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
