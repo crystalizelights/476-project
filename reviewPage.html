@@ -24,18 +24,23 @@
         <div class="nav-links">
             <a href="{% url 'stores:new' %}" class="nav-link">Add store</a>
             <a href="{% url 'my_store:index' %}" class="nav-link">My store</a>
-            <a href="#" class="nav-link">Reviews</a>
             <a href="{% url 'vendor:signup' %}" class="btn btn-signup">Sign up</a>
-            <a href="{% url 'vendor:login' %}" class="btn btn-login">Log in</a>
+            <a href="#" class="btn btn-login">Log Out</a>
         </div>
     </nav>
 
     <h1 class="flex justify-center text-xl">Leave A Review</h1>
 
-    <div class = "flex items-center justify-center pt-6">
-        <h3 class="text-lg"> Store Name</h3>
+    <h3 label for="Reveiw" class="flex justify-center text-lg pt-6"> Store Name</h3> </br>
+    <div class = "flex items-center justify-center">
+        
         <form>
-            <input type="text" id="Review">
+            Your Reveiw <textarea  rows="1" cols="25" spellcheck="true" id="Review">
+            </textarea>
+            <div class ="justify-center text-lg font-semibold bg-yellow-500 text-white rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-200"> 
+                    <input type="submit" value="Save Reveiw">
+                    </div>
+
         </form>
     </div>
 
