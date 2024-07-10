@@ -8,11 +8,11 @@
     {%load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/loginPage.css' %}">
+   
     <link rel="icon" type="image" href="{% static 'images/icon.png' %}" />
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <title>Review</title>
+    <title>Store Reviews</title>
 </head>
 
 <body>
@@ -26,11 +26,43 @@
             <a href="{% url 'my_store:index' %}" class="nav-link">My store</a>
             <a href="#" class="nav-link">Reviews</a>
             <a href="{% url 'vendor:signup' %}" class="btn btn-signup">Sign up</a>
-            <a href="{% url 'vendor:login' %}" class="btn btn-login">Log in</a>
+            <a href="{% url 'vendor:login' %}" class="btn btn-login">Reviews</a>
         </div>
     </nav>
+    <div class="mt-6 px-6 py-12 bg-indigo-100 rounded-xl">
+        <h2 class="mb-8 text-3xl text-center">Store reviews</h2>
+    
+        <div class="space-y-8">
+            {% for review in reviews %}
+           
+                <div class="p-6 flex bg-gray-100 rounded-xl items-center space-x-6">
+                    <div class="flex-shrink-0 w-1/5">
+                        <img src="{{ review.stores.image.url }}" class=" w-full h-64 object-cover rounded-xl" alt="Store Image">
+                    </div>
+    
+                    <div class="w-2/3">
+                        {% for participant in review.participants.all %}
+                            {% if participant != request.user %}
+                                <h2 class="mb-2 text-3xl"><b> | {{ participant.username }}'s store review</b></h2>
+                            {% endif %}
+                        {% endfor %}
+    
+                        {% for text in review.texts.all %}
+                        <div class="p-4 bg-gray-300 rounded-xl mb-4">
+                            <p class="mb-2 text-xl"><strong> {{ text.created_by.username }}</strong> @ {{ text.created_at }}</p>
+                            <p>{{ text.content }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+         
+            {% endfor %}
+        </div>
+    </div>
+    
 
-    <h1>Review</h1>
+    
+
 
 
     <footer class="footer1">

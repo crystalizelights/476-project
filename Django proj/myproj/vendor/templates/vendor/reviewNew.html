@@ -51,66 +51,37 @@
         <div class="nav-links">
             <a href="{% url 'stores:new' %}" class="nav-link">Add store</a>
             <a href="{% url 'my_store:index' %}" class="nav-link">My store</a>
-            <a href="{% url 'vendor:reviewInbox' %}" class="nav-link">Reviews</a>
+            <a href="#" class="nav-link">Reviews</a>
             <a href="{% url 'vendor:signup' %}" class="btn btn-signup">Sign up</a>
             <a href="{% url 'vendor:login' %}" class="btn btn-login">Log in</a>
         </div>
     </nav>
-    <div class="promo-section">
-        <div class="promo-text-container">
-            <p class="promo-text">LET'S EXPLORE</p>
-            <div id="yellow">LOCAL</div>
-            <p class="promo-text">SERVICES</p>
-            <p class="promo-text-small">Discover and Sell local services</p>
+    <h1 class="mb-6 text-3xl">Add review</h1>
+
+    <form method="post" action="." enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="font-bold">
+            {{ form.as_p }}
         </div>
-        <img src="{% static 'images/woman.png' %}" class="promo-img">
 
-    </div>
-    <div class="search-bar">
-        <input id="searchInput" type="text" placeholder="Type store name to search for it..." class="search-input">
-    </div>
-
-    <div class="main-content">
-        <div class="stores-section">
-            <h1 class="section-title"><b>Vendors</b></h1>
-
-            <div id="itemsContainer" class="stores-container">
-                {% for store in stores %}
-                <div class="item">
-                    <a href="{% url 'stores:detail' store.id %}">
-                        <div>
-                            <img src="{{store.image.url}}" class="item-img">
-                        </div>
-
-                        <div class="item-details">
-                            <h2 class="item-title">{{store.name}} Store</h2>
-                            <p class="item-text">Owner: {% if request.user == store.created_by %} you {% else %}
-                                <b>{{store.created_by.username}}</b> {% endif %} on {{store.created_at}}.
-                            </p>
-                        </div>
-                    </a>
-                </div>
-                {% endfor %}
+        {% if form.errors or form.non_field_errors %}
+            <div class="text-lg mt-6 mb-3 p-6 bg-red-100 rounded-xl">
+                <ul class="list-disc list-inside text-red-600">
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
             </div>
-        </div>
+        {% endif %}
 
-        <div class="sections">
-            <h2 class="section-title">Sections</h2>
-
-            <div class="categories-container">
-                {% for category in categories %}
-                <div class="category">
-                    <a href="#">
-                        <div class="category-details">
-                            <h2 class="category-title">{{category.name}}🛒</h2>
-                            <p class="category-text">There are {{category.stores.count}} stores in this section. </p>
-                        </div>
-                    </a>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
+        <button class="mt-6 py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-teal-600 focus:ring-opacity-50 transition duration-150">Submit</button>
+    </form>
 
     <footer class="footer1">
         <div class="footer-about">

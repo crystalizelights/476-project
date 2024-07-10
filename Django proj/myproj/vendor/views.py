@@ -69,4 +69,20 @@ def review_new(request, stores_pk):
         form = ReviewTextForm()
 
     # Render the review form template with the form object
-    return render(request, 'review_new.html', {'form': form})
+    return render(request, 'vendor/reviewNew.html', {'form': form})
+
+
+def reviewInbox(request):
+    reviews = Review.objects.filter(participants__in=[request.user.id])
+
+    return render(request, 'vendor/reviewInbox.html', {
+        'reviews': reviews
+    })
+
+
+def reviewDetail(request, pk):
+    review = Review.objects.filter(participants__in=[request.user.id])
+
+    return render(request, 'vendor/reviewDetail.html', {
+        'review': review
+    })

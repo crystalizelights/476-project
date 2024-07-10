@@ -10,7 +10,7 @@ urlpatterns = [
     path('', include('vendor.urls')),
     path('stores/', include('stores.urls')),
     path('my_store/' , include('my_store.urls')),
-    path('inbox/', include('vendor.urls')),
+    path('reviewInbox/', include('vendor.urls')),
     #path('reviews/', include('review.urls')),
     path('admin/', admin.site.urls),
 

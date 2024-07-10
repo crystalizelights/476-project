@@ -11,5 +11,7 @@ urlpatterns = [
     #path('contact/', views.contact, name='contact'),
     path('signup/', views.signup, name='signup'),
     path('login/', auth_views.LoginView.as_view(template_name='vendor/login.html',authentication_form=LoginForm), name='login'),
-    path('review_new/<int:stores_pk>/', views.review_new, name='review_new'),
+    path('reviewNew/<int:stores_pk>/', views.review_new, name='reviewNew'),
+    path('reviewInbox/', views.reviewInbox, name='reviewInbox'),
+    path('reviewInbox/<int:pk>/', views.reviewDetail, name='reviewDetail'),
 ]
