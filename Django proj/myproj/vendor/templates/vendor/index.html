@@ -52,8 +52,14 @@
             <a href="{% url 'stores:new' %}" class="nav-link">Add store</a>
             <a href="{% url 'my_store:index' %}" class="nav-link">My store</a>
             <a href="{% url 'vendor:reviewInbox' %}" class="nav-link">Reviews</a>
+            {% if request.user.is_authenticated %}
+            <form action="{% url 'vendor:logout' %}" method="post">{% csrf_token%}
+                <button type="submit" value="Logout" class="btn btn-login bg-red-500 hover:bg-red-700 transition duration-300 ease-in-out "> Logout</button>
+            </form>
+            {% else %}
             <a href="{% url 'vendor:signup' %}" class="btn btn-signup">Sign up</a>
             <a href="{% url 'vendor:login' %}" class="btn btn-login">Log in</a>
+            {% endif %}
         </div>
     </nav>
     <div class="promo-section">
@@ -74,24 +80,31 @@
         <div class="stores-section">
             <h1 class="section-title"><b>Vendors</b></h1>
 
-            <div id="itemsContainer" class="stores-container">
+            <div id="itemsContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 flex justify-center items-center flex-wrap">
                 {% for store in stores %}
-                <div class="item">
+                <div class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden m-4 transition duration-300 ease-in-out transform hover:scale-105">
                     <a href="{% url 'stores:detail' store.id %}">
-                        <div>
-                            <img src="{{store.image.url}}" class="item-img">
-                        </div>
-
-                        <div class="item-details">
-                            <h2 class="item-title">{{store.name}} Store</h2>
-                            <p class="item-text">Owner: {% if request.user == store.created_by %} you {% else %}
-                                <b>{{store.created_by.username}}</b> {% endif %} on {{store.created_at}}.
-                            </p>
+                        <div class="relative">
+                            <img src="{{store.image.url}}" class="w-full h-64 object-cover rounded-t-xl">
+                            <div class="absolute bottom-0 left-0 p-4 text-white bg-black bg-opacity-45 w-full">
+                                <h2 class="text-xl font-bold">{{store.name}} Store</h2>
+                                <p class="text-sm">
+                                    Owner:
+                                    {% if request.user == store.created_by %}
+                                    you
+                                    {% else %}
+                                    <b>{{store.created_by.username}}</b>
+                                    {% endif %}
+                                    on {{store.created_at|date:"F d, Y"}}
+                                </p>
+                            </div>
                         </div>
                     </a>
                 </div>
                 {% endfor %}
             </div>
+            
+            
         </div>
 
         <div class="sections">

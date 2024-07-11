@@ -4,6 +4,7 @@ from .models import Review
 from .forms import ReviewTextForm
 # Create your views here.
 from django.shortcuts import render, redirect
+from django.contrib.auth import logout as logouts
 
 from .forms import SignupForm
 # Create your views here.
@@ -33,6 +34,12 @@ def signup(request):
         'form': form
     })
 
+def logout(request):
+    if request.method == 'POST':
+        logouts(request)
+        return redirect('vendor:login')
+
+
 
 def review_new(request, stores_pk):
     stores = get_object_or_404(Stores, pk=stores_pk)
@@ -44,7 +51,6 @@ def review_new(request, stores_pk):
     # Check if the user has already reviewed this store
     reviews = Review.objects.filter(stores=stores).filter(participants__in=[request.user.id])
     if reviews.exists():
-        # You may want to handle this case differently (e.g., show a message)
         pass
 
     if request.method == 'POST':
@@ -63,8 +69,9 @@ def review_new(request, stores_pk):
             review_message.created_by = request.user
             review_message.save()
 
-            # Redirect to store detail view after successful review submission
-            return redirect('stores:detail', pk=stores_pk)
+            # Redirect to reviews page after successful review submission
+            # return redirect('stores:detail', pk=stores_pk)
+            return redirect('vendor:reviewInbox')
     else:
         form = ReviewTextForm()
 

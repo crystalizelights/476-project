@@ -234,17 +234,18 @@ body {
     align-items: center;
     padding-left: 10px;
     padding-right: 10px;
+    background-color: white;
 }
 
 .item-title,
 .category-title {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 600;
 }
 
 .item-text,
 .category-text {
-    font-size: 10px;
+    font-size: 15px;
     color: #6B7280;
 }
 

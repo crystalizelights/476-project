@@ -51,9 +51,15 @@
         <div class="nav-links">
             <a href="{% url 'stores:new' %}" class="nav-link">Add store</a>
             <a href="{% url 'my_store:index' %}" class="nav-link">My store</a>
-            <a href="#" class="nav-link">Reviews</a>
+            <a href="{% url 'vendor:reviewInbox' %}" class="nav-link">Reviews</a>
+            {% if request.user.is_authenticated %}
+            <form action="{% url 'vendor:logout' %}" method="post">{% csrf_token%}
+                <button type="submit" value="Logout" class="btn btn-login bg-red-500 hover:bg-red-700 transition duration-300 ease-in-out "> Logout</button>
+            </form>
+            {% else %}
             <a href="{% url 'vendor:signup' %}" class="btn btn-signup">Sign up</a>
             <a href="{% url 'vendor:login' %}" class="btn btn-login">Log in</a>
+            {% endif %}
         </div>
     </nav>
     <h1 class="mb-6 text-3xl">Add review</h1>
