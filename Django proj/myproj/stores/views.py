@@ -44,7 +44,7 @@ def itemdetail(request, pk):
         'related_stores': related_stores
     })
 
-@login_required
+#@login_required
 def new(request):
     if request.method == 'POST':
         form = NewStore(request.POST, request.FILES)
@@ -60,6 +60,7 @@ def new(request):
 
     return render(request, 'stores/form.html' , {
         'form': form,
+        'title': 'Add store',
         
     })
 

@@ -32,9 +32,10 @@
                 {% endif %}
             </div>
         </nav>
+        {% if request.user.is_authenticated %}
         <div class="px-6 py-6 bg-gray-100 min-h-screen flex items-center justify-center">
             <div class="bg-white p-8 shadow-lg rounded-xl">
-                <h1 class="mb-6 text-3xl font-semibold text-gray-800 text-center">Create store</h1>
+                <h1 class="mb-6 text-3xl font-semibold text-gray-800 text-center">{{ title }}</h1>
         
                 <form method="post" action="." enctype="multipart/form-data">
                     {% csrf_token %}
@@ -62,6 +63,22 @@
                 </form>
             </div>
         </div>
+
+        {% else %}
+
+        <div class="flex flex-col items-center justify-center h-screen bg-gray-100">
+            <div class="max-w-md bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold mb-4 text-center">Access Required</h2>
+                <p class="text-lg text-center mb-4">To add a store, you need to log in or create an account.</p>
+                <div class="flex justify-center">
+                    <a href="{% url 'vendor:login' %}" class="btn btn-login">Log in</a>
+                    <a href="{% url 'vendor:signup' %}" class="btn btn-signup">Sign up</a>
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+        
 
         <footer class="px-6 py-6 flex justify-between bg-gray-800">
             <div class="w-2/3 pr-10">

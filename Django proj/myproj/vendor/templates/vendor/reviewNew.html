@@ -62,17 +62,19 @@
             {% endif %}
         </div>
     </nav>
-    <h1 class="mb-6 text-3xl">Add review</h1>
+   
 
-    <form method="post" action="." enctype="multipart/form-data">
+    <form method="post" action="." enctype="multipart/form-data" class="mx-auto mt-8 bg-indigo-50 shadow-md rounded-lg p-6 w-1/2 mb-8">
         {% csrf_token %}
-
-        <div class="font-bold">
+    
+        <div class="font-bold text-2xl mb-4 text-center">Add review</div>
+    
+        <div>
             {{ form.as_p }}
         </div>
-
+    
         {% if form.errors or form.non_field_errors %}
-            <div class="text-lg mt-6 mb-3 p-6 bg-red-100 rounded-xl">
+            <div class="mt-6 bg-red-100 rounded-xl p-4">
                 <ul class="list-disc list-inside text-red-600">
                     {% for field in form %}
                         {% for error in field.errors %}
@@ -85,9 +87,12 @@
                 </ul>
             </div>
         {% endif %}
-
-        <button class="mt-6 py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-teal-600 focus:ring-opacity-50 transition duration-150">Submit</button>
+    
+        <button type="submit" class="mt-6 py-4 px-8 bg-teal-500 hover:bg-teal-700 rounded-xl text-white text-lg focus:outline-none focus:ring-2 focus:ring-teal-600 focus:ring-opacity-50 transition duration-150 w-full">
+            Post
+        </button>
     </form>
+    
 
     <footer class="footer1">
         <div class="footer-about">
