@@ -7,7 +7,16 @@ INPUT_CLASSES = 'w-full py-4 px-6 rounded-xl border-gray-300 focus:border-teal-5
 class NewStore(forms.ModelForm):
     class Meta:
         model = Stores
-        fields = {'category', 'name', 'description', 'price', 'image', 'image1', 'image2', 'contact', 'address', 'item1name','item2name', 'item3name'}
+        fields = ['category', 'name', 'description', 'price', 'image', 'item1name', 'image1','item2name', 'image2','item3name', 'contact', 'address']
+        labels = {
+            'category' : 'Section',
+            'image': 'First item image',
+            'image1': 'Second item image',
+            'image2': 'Third item image',
+            'item1name': 'First item name',
+            'item2name': 'Second item name',
+            'item3name': 'Third item name',
+        }
         widgets = {
             'category': forms.Select(attrs={
                 'class': INPUT_CLASSES + ' bg-white',
@@ -60,7 +69,16 @@ class NewStore(forms.ModelForm):
 class EditStore(forms.ModelForm):
         class Meta:
             model = Stores
-            fields = {'name', 'description', 'price', 'image', 'is_sold', 'image1', 'image2', 'contact', 'address', 'item1name', 'item2name', 'item3name'}
+            fields = ['category', 'name', 'description', 'price', 'image', 'item1name', 'image1','item2name', 'image2','item3name', 'contact', 'address']
+            labels = {
+            'category' : 'Section',
+            'image': 'First item image',
+            'image1': 'Second item image',
+            'image2': 'Third item image',
+            'item1name': 'First item name',
+            'item2name': 'Second item name',
+            'item3name': 'Third item name',
+        }
             widgets = {               
                 'name': forms.TextInput(attrs={
                     'class': INPUT_CLASSES
