@@ -8,7 +8,7 @@
     {%load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/signupPage.css' %}">
     <link rel="icon" type="image" href="{% static 'images/icon.png' %}" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -19,59 +19,61 @@
 
 <body class="bg-gray-50">
     <nav class="header">
-    <div class="logo-container">
-        <img src="{% static 'images/iconWomen.jpg' %}" class="logo-img">
-        <a class="logo-text" href="{% url 'vendor:index' %}">Vendors website</a>
-    </div>
-    <div class="nav-links">
-        <a href="{% url 'stores:new' %}" class="nav-link">Add store</a>
-        <a href="{% url 'my_store:index' %}" class="nav-link">My store</a>
-        <a href="#" class="nav-link">Reviews</a>
-        <a href="{% url 'vendor:signup' %}" class="btn btn-signup">Sign up</a>
-        <a href="{% url 'vendor:login' %}" class="btn btn-login">Log in</a>
-    </div>
+        <div class="logo-container">
+            <img src="{% static 'images/iconWomen.jpg' %}" class="logo-img">
+            <a class="logo-text" href="{% url 'vendor:index' %}">Vendors website</a>
+        </div>
+        <div class="nav-links">
+            <a href="{% url 'stores:new' %}" class="nav-link">Add store</a>
+            <a href="{% url 'my_store:index' %}" class="nav-link">My store</a>
+            <a href="#" class="nav-link">Reviews</a>
+            <a href="{% url 'vendor:signup' %}" class="btn btn-signup">Sign up</a>
+            <a href="{% url 'vendor:login' %}" class="btn btn-login">Log in</a>
+        </div>
     </nav>
 
-    <div class="w-1/2 my-6 mx-auto p-6 bg-gray-100 rounded-xl">
-        <h1 class="mb-6 text-3xl">Sign up</h1>
+    <div class="main-container">
+        <img src="{% static 'images/loginImage.jpg' %}" class="main-image">
+        <div class="forms-container">
+            <h1 class="h1-style">Sign up</h1>
 
-        <form method="post" action=".">
-            {% csrf_token %}
+            <form method="post" action=".">
+                {% csrf_token %}
 
-            <div class="mb-3">
-                <label class="inline-block mb-2">Username</label><br>
-                {{ form.username }}
-            </div>
+                <div class="mb-3">
+                    <label class="text-style1">Username</label><br>
+                    {{ form.username }}
+                </div>
 
-            <div class="mb-3">
-                <label class="inline-block mb-2">Email</label><br>
-                {{ form.email }}
-            </div>
+                <div class="mb-3">
+                    <label class="text-style1">Email</label><br>
+                    {{ form.email }}
+                </div>
 
-            <div class="mb-3">
-                <label class="inline-block mb-2">Password</label><br>
-                {{ form.password1 }}
-            </div>
+                <div class="mb-3">
+                    <label class="text-style1">Password</label><br>
+                    {{ form.password1 }}
+                </div>
 
-            <div class="mb-3">
-                <label class="inline-block mb-2">Repeat password</label><br>
-                {{ form.password2 }}
-            </div>
+                <div class="mb-3">
+                    <label class="text-style1">Repeat password</label><br>
+                    {{ form.password2 }}
+                </div>
 
-            {% if form.errors or form.non_field_errors %}
-            <div class="mb-3 p-6 bg-red-100 rounded-xl">
-                {% for field in form %}
-                {{ field.errors }}
-                {% endfor %}
+                {% if form.errors or form.non_field_errors %}
+                <div class="mb-3 p-6 bg-red-100 rounded-xl">
+                    {% for field in form %}
+                    {{ field.errors }}
+                    {% endfor %}
 
-                {{ form.non_field_errors }}
-            </div>
-            {% endif %}
+                    {{ form.non_field_errors }}
+                </div>
+                {% endif %}
 
-            <button class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Submit</button>
-        </form>
+                <button class="button-style">Submit</button>
+            </form>
+        </div>
     </div>
-
 
     <footer class="footer1">
         <div class="footer-about">

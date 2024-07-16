@@ -20,19 +20,19 @@ class SignupForm(UserCreationForm):
     
     username = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder': 'Enter username',
-        'class': 'w-full py-4 px-6 rounded-xl'
+        'class': 'text-input'
     }))
     email = forms.CharField(widget=forms.EmailInput(attrs={
         'placeholder': 'Enter email address',
-        'class': 'w-full py-4 px-6 rounded-xl'
+        'class': 'text-input'
     }))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={
         'placeholder': 'Enter password',
-        'class': 'w-full py-4 px-6 rounded-xl'
+        'class': 'text-input'
     }))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={
         'placeholder': 'Confirm password',
-        'class': 'w-full py-4 px-6 rounded-xl'
+        'class': 'text-input'
     }))
 
 class ReviewTextForm(forms.ModelForm):
