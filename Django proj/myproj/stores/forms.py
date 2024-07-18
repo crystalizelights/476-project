@@ -60,7 +60,7 @@ class NewStore(forms.ModelForm):
                 'placeholder': 'Item 2 Name'
             }),
             'item3name': forms.TextInput(attrs={
-                'class': INPUT_CLASSES,
+                'class': 'text-input',
                 'placeholder': 'Item 3 Name'
             }),
         }
@@ -81,13 +81,13 @@ class EditStore(forms.ModelForm):
         }
             widgets = {               
                 'name': forms.TextInput(attrs={
-                    'class': INPUT_CLASSES
+                    'class': 'text-input'
                 }),
                 'description': forms.Textarea(attrs={
-                    'class': INPUT_CLASSES
+                    'class':'text-input'+ ' h-32 pt-3'
                 }),
                 'price': forms.TextInput(attrs={
-                    'class': INPUT_CLASSES
+                    'class': 'text-input'
                 }),
                 'image': forms.ClearableFileInput(attrs={
                     'class': INPUT_CLASSES
@@ -99,19 +99,19 @@ class EditStore(forms.ModelForm):
                     'class': INPUT_CLASSES,
                 }),
                 'contact': forms.TextInput(attrs={
-                    'class': INPUT_CLASSES,                    
+                    'class': 'text-input',                    
                 }),
                 'address': forms.TextInput(attrs={
-                    'class': INPUT_CLASSES,                  
+                    'class': 'text-input',                  
                 }),
                 'item1name': forms.TextInput(attrs={
-                'class': INPUT_CLASSES,                
+                'class': 'text-input',                
                 }),
                 'item2name': forms.TextInput(attrs={
-                    'class': INPUT_CLASSES,                    
+                    'class': 'text-input',                    
                 }),
                 'item3name': forms.TextInput(attrs={
-                    'class': INPUT_CLASSES,                   
+                    'class': 'text-input',                   
                 }),
             }
         

@@ -14,8 +14,9 @@
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     width: 600px;
     border-radius: 30px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px;
+    padding-left: 25px;
+    padding-right: 20px;
 }
 
 .h1-style {
