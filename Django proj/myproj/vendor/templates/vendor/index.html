@@ -16,7 +16,7 @@
             // Search for stores by name
             $("#searchInput").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
-                $("#itemsContainer .item").filter(function () {
+                $("#store-container .store").filter(function () {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
@@ -80,9 +80,9 @@
         <div class="stores-section">
             <h1 class="section-title"><b>Vendors</b></h1>
 
-            <div id="itemsContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 flex justify-center items-center flex-wrap">
+            <div id="store-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 flex justify-center items-center flex-wrap">
                 {% for store in stores %}
-                <div class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden m-4 transition duration-300 ease-in-out transform hover:scale-105">
+                <div class="store max-w-xs bg-white shadow-lg rounded-lg overflow-hidden m-4 transition duration-300 ease-in-out transform hover:scale-105">
                     <a href="{% url 'stores:detail' store.id %}">
                         <div class="relative">
                             <img src="{{store.image.url}}" class="w-full h-64 object-cover rounded-t-xl">
