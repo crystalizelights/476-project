@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {%load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}">
+        <link rel="stylesheet" href="{% static 'css/configStore.css' %}">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <script src ="https://cdn.tailwindcss.com"></script>
 
@@ -34,8 +35,8 @@
         </nav>
         {% if request.user.is_authenticated %}
         <div class="px-6 py-6 bg-gray-100 min-h-screen flex items-center justify-center">
-            <div class="bg-white p-8 shadow-lg rounded-xl">
-                <h1 class="mb-6 text-3xl font-semibold text-gray-800 text-center">{{ title }}</h1>
+            <div class="main-form">
+                <h1 class="h1-style">{{ title }}</h1>
         
                 <form method="post" action="." enctype="multipart/form-data">
                     {% csrf_token %}
@@ -45,7 +46,7 @@
                     </div>
         
                     {% if form.errors or form.non_field_errors %}
-                        <div class="text-lg mt-6 mb-3 p-6 bg-red-100 rounded-xl">
+                        <div class="error-msg">
                             <ul class="list-disc list-inside text-red-600">
                                 {% for field in form %}
                                     {% for error in field.errors %}
@@ -59,7 +60,7 @@
                         </div>
                     {% endif %}
         
-                    <button class="mt-6 py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-teal-600 focus:ring-opacity-50 transition duration-150">Submit</button>
+                    <button class="button-style">Submit</button>
                 </form>
             </div>
         </div>
@@ -80,22 +81,22 @@
         {% endif %}
         
 
-        <footer class="px-6 py-6 flex justify-between bg-gray-800">
-            <div class="w-2/3 pr-10">
-                <h3 class="mb-5 font-semibold text-gray-400">About</h3>
-
-                <p class="text-lg text-gray-500">Vendor promotional website</p>
+        <footer class="footer1">
+            <div class="footer-about">
+                <h3 class="footer-title">About</h3>
+                <p class="footer-text">Vendor promotional website</p>
             </div>
-
-            <div class="w-1/3">
-                <h3 class="mb-5 font-semibold text-gray-400">Menu</h3>
-                <ul class="space-y-2">
-                    <li><a href="/" class="text-lg text-teal-500 hover:text-yellow-700">About</a> </li>
-                    <li><a href="/" class="text-lg text-teal-500 hover:text-yellow-700">Contact</a> </li>
-                    <li><a href="/" class="text-lg text-teal-500 hover:text-yellow-700">Privacy</a> </li>
+    
+            <div class="footer-menu">
+                <h3 class="footer-title">Menu</h3>
+                <ul class="footer-links">
+                    <li><a href="/" class="footer-link">About</a></li>
+                    <li><a href="/" class="footer-link">Contact</a></li>
+                    <li><a href="/" class="footer-link">Privacy</a></li>
                 </ul>
             </div>
         </footer>
+    
     </body>
 </html>
 

@@ -19,19 +19,19 @@ class NewStore(forms.ModelForm):
         }
         widgets = {
             'category': forms.Select(attrs={
-                'class': INPUT_CLASSES + ' bg-white',
+                'class': 'text-input' + ' bg-white',
                 'placeholder': 'Select Category'
             }),
             'name': forms.TextInput(attrs={
-                'class': INPUT_CLASSES,
+                'class': 'text-input',
                 'placeholder': 'Store Name'
             }),
             'description': forms.Textarea(attrs={
-                'class': INPUT_CLASSES + ' h-32',
+                'class': 'text-input' + ' h-32 pt-3',
                 'placeholder': 'Store Description'
             }),
             'price': forms.NumberInput(attrs={
-                'class': INPUT_CLASSES,
+                'class': 'text-input',
                 'placeholder': 'Item Price'
             }),
             'image': forms.ClearableFileInput(attrs={
@@ -44,19 +44,19 @@ class NewStore(forms.ModelForm):
                 'class': INPUT_CLASSES,
             }),
             'contact': forms.TextInput(attrs={
-                'class': INPUT_CLASSES,
+                'class': 'text-input',
                 'placeholder': 'Contact'
             }),
             'address': forms.TextInput(attrs={
-                'class': INPUT_CLASSES,
+                'class': 'text-input',
                 'placeholder': 'Store address'
             }),
             'item1name': forms.TextInput(attrs={
-                'class': INPUT_CLASSES,
+                'class': 'text-input',
                 'placeholder': 'Item 1 Name'
             }),
             'item2name': forms.TextInput(attrs={
-                'class': INPUT_CLASSES,
+                'class': 'text-input',
                 'placeholder': 'Item 2 Name'
             }),
             'item3name': forms.TextInput(attrs={

@@ -1,0 +1,56 @@
+.error-msg {
+    color: red;
+    width: 400px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    padding-right: 10px;
+}
+
+.main-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    width: 600px;
+    border-radius: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.h1-style {
+    font-size: 30px;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    margin: 0px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.text-input {
+    height: 40px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    border: 1px solid #d4d7df;
+    padding-left: 15px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    width: 500px;
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    
+}
+.button-style {
+    width: 100px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 18px;
+    background-color: #1d1d1d;
+    border-radius: 25px;
+    color: #ffffff;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
