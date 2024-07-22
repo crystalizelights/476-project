@@ -10,7 +10,7 @@ from .forms import SignupForm
 # Create your views here.
 from stores.models import Category, Stores
 def index(request):
-    store = Stores.objects.filter(is_sold=False)[0:6]
+    store = Stores.objects.filter(is_sold=False)[0:20]
     categories = Category.objects.all()
 
     return render(request, 'vendor/index.html', {
