@@ -66,9 +66,11 @@
 
     <form method="post" action="." enctype="multipart/form-data" class="mx-auto mt-8 bg-indigo-50 shadow-md rounded-lg p-6 w-1/2 mb-8">
         {% csrf_token %}
+
     
-        <div class="font-bold text-2xl mb-4 text-center">Add review</div>
-    
+        <div class="font-bold text-2xl mb-4 text-center">Your review</div>
+        <h3 label for="Reveiw" class="flex justify-center text-lg pt-6"> Store Name</h3>
+
         <div>
             {{ form.as_p }}
         </div>
@@ -88,8 +90,8 @@
             </div>
         {% endif %}
     
-        <button type="submit" class="mt-6 py-4 px-8 bg-teal-500 hover:bg-teal-700 rounded-xl text-white text-lg focus:outline-none focus:ring-2 focus:ring-teal-600 focus:ring-opacity-50 transition duration-150 w-full">
-            Post
+        <button type="submit" class="mt-6 py-4 px-8 text-lg font-semibold bg-yellow-500 text-white rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-150 w-full">
+            Save Reveiw
         </button>
     </form>
     
