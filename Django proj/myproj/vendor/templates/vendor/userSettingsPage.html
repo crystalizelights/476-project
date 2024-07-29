@@ -4,6 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="{% static 'css/userSettingsPage.css' %}">
@@ -34,20 +35,27 @@
 
         </div>
         <div class ="flex items-center justify-center w-full pt-6"> 
-        <form method="post" id="userSettings">
-            <div class="flex items-center justify-center ps-3">
-               <label for="Viewer" class="cursor-pointer w-1/6 flex items-center justify-center truncate uppercase select-none font-semibold text-lg rounded-full hover:bg-teal-600 checked:border-yellow-500 py-2">Viewer</label>
-               <input type ="radio" name ="userType" class="w-6 h-6"  id ="Viewer"  />
-            </div>
-            <div class="flex items-center justify-center ps-3">
-                <label for="Seller" class="cursor-pointer w-1/6 flex items-center justify-center truncate uppercase select-none font-semibold text-lg rounded-full hover:bg-teal-600 checked:border-yellow-500 py-2">Seller</label>
-                <input type ="radio" name ="userType" class="w-6 h-6"  id ="Seller" />
-            </div>
-            <h3 class="text-lg"> User Image <input type="file" class="uploadCustom  pl-4"> </h3>    
-        <div class ="flex items-center justify-center text-lg font-semibold bg-blue-500 text-white rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-200"> 
-            <input type="submit" value="Continue">
-            </div>
-        </form>
+            <form method="post" enctype="multipart/form-data" id="userSettings">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <div class="flex items-center justify-center">
+                    {% for radio in form.userType %}
+                        <div class="flex items-center justify-center ps-3">
+                            {{ radio.tag }}
+                            <label for="{{ radio.id_for_label }}" class="cursor-pointer w-1/6 flex items-center justify-center truncate uppercase select-none font-semibold text-lg rounded-full hover:bg-teal-600 checked:border-yellow-500 py-2">
+                                {{ radio.choice_label }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="flex items-center justify-center pt-6">
+                    <h3 class="text-lg">User Image</h3>
+                    {{ form.profile_image }}
+                </div>
+                <div class="flex items-center justify-center text-lg font-semibold bg-blue-500 text-white rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-200 mt-6">
+                    <input type="submit" value="Continue">
+                </div>
+            </form>
         </div>
     </body>
 

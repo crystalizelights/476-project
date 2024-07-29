@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from .models import ReviewText
+from .models import UserProfile
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={
@@ -44,3 +45,23 @@ class ReviewTextForm(forms.ModelForm):
                 'class': 'w-full py-4 px-6 rounded-xl border'
             })
         }
+
+class UserSettingsForm(forms.ModelForm):
+    ROLE_CHOICES = [
+        ('Viewer', 'Viewer'),
+        ('Seller', 'Seller'),
+    ]
+
+    userType = forms.ChoiceField(
+        choices=ROLE_CHOICES,
+        widget=forms.RadioSelect(attrs={
+            'class': 'w-6 h-6',
+        })
+    )
+    profile_image = forms.ImageField(required=False, widget=forms.FileInput(attrs={
+        'class': 'uploadCustom pl-4'
+    }))
+
+    class Meta:
+        model = UserProfile
+        fields = ['userType', 'profile_image']

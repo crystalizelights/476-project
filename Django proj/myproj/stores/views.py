@@ -54,7 +54,7 @@ def new(request):
             store.created_by = request.user
             store.save()
 
-            return redirect('stores:detail', pk=store.id)
+            return redirect('vendor:index')
     else:
         form = NewStore()
 

@@ -17,3 +17,20 @@ class ReviewText(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, related_name='created_texts', on_delete=models.CASCADE)
+
+class UserProfile(models.Model):
+    ROLE_CHOICES = [
+        ('Viewer', 'Viewer'),
+        ('Seller', 'Seller'),
+    ]
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    userType = models.CharField(
+        max_length=10,
+        choices=ROLE_CHOICES,
+        default='Viewer',
+    )
+    profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.user.username} Profile'

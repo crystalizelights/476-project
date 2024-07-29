@@ -24,11 +24,17 @@
             <a class="logo-text" href="{% url 'vendor:index' %}">Vendors website</a>
         </div>
         <div class="nav-links">
+            {% if request.user.is_authenticated %}
             <a href="{% url 'stores:new' %}" class="nav-link">Add store</a>
             <a href="{% url 'my_store:index' %}" class="nav-link">My store</a>
-            <a href="#" class="nav-link">Reviews</a>
+            <a href="{% url 'vendor:reviewInbox' %}" class="nav-link">Reviews</a>
+            <form action="{% url 'vendor:logout' %}" method="post">{% csrf_token%}
+                <button type="submit" value="Logout" class="btn btn-login bg-red-500 hover:bg-red-700 transition duration-300 ease-in-out "> Logout</button>
+            </form>
+            {% else %}
             <a href="{% url 'vendor:signup' %}" class="btn btn-signup">Sign up</a>
             <a href="{% url 'vendor:login' %}" class="btn btn-login">Log in</a>
+            {% endif %}
         </div>
     </nav>
 
@@ -56,7 +62,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="text-style1">Repeat password</label><br>
+                    <label class="text-style1">Confirm password</label><br>
                     {{ form.password2 }}
                 </div>
 

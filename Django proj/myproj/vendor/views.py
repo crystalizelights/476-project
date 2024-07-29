@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from stores.models import Stores
 from .models import Review
-from .forms import ReviewTextForm
+from .forms import ReviewTextForm, UserSettingsForm
 # Create your views here.
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout as logouts
@@ -18,6 +18,16 @@ def index(request):
         'stores': store,
     })
 
+def userSettingsPage(request):
+    if request.method == 'POST':
+        form = UserSettingsForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect('index')  # Redirect to the settings page or another page after saving
+    else:
+        form = UserSettingsForm()
+    
+    return render(request, 'vendor/userSettingsPage.html', {'form': form})
 
 def signup(request):
     if request.method == 'POST':
