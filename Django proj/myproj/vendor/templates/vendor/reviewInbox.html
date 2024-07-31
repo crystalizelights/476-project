@@ -41,7 +41,7 @@
         <div class="space-y-8">
             {% for review in reviews %}
            
-                <div class="p-6 flex bg-gray-100 rounded-xl items-center space-x-6">
+                <div class="flex bg-gray-100 rounded-xl items-center space-x-6 shadow-lg ">
                     <div class="flex-shrink-0 w-1/5">
                         <img src="{{ review.stores.image1.url }}" class=" w-full h-64 object-cover rounded-xl" alt="Store Image">
                     </div>
@@ -54,7 +54,7 @@
                         {% endfor %}
     
                         {% for text in review.texts.all %}
-                        <div class="p-4 bg-gray-300 rounded-xl mb-4">
+                        <div class="p-4 bg-gray-300 rounded-xl mb-4 hover:shadow-lg transition duration-300">
                             <p class="mb-2 text-xl"><strong> {{ text.created_by.username }}</strong> @ {{ text.created_at }}</p>
                             <p>{{ text.content }}</p>
                         </div>
