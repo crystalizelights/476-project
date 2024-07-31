@@ -1,95 +1,98 @@
 <!doctype html>
 <link rel="stylesheet" type="text/css" href="style1.css">
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {%load static %}
-        <link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <script src ="https://cdn.tailwindcss.com"></script>
 
-        <title>My store</title>
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}">
+    <link rel="stylesheet" href="{% static 'css/myStorePage.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@600;100;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <body class="bg-gray-50">
-        <nav class="header">
-            <div class="logo-container">
-                <img src="{% static 'images/iconWomen.jpg' %}" class="logo-img">
-                <a class="logo-text" href="{% url 'vendor:index' %}">Vendors website</a>
-            </div>
-            <div class="nav-links">
-                <a href="{% url 'stores:new' %}" class="nav-link">Add store</a>
-                <a href="{% url 'my_store:index' %}" class="nav-link">My store</a>
-                <a href="{% url 'vendor:reviewInbox' %}" class="nav-link">Reviews</a>
-                {% if request.user.is_authenticated %}
-                <form action="{% url 'vendor:logout' %}" method="post">{% csrf_token%}
-                    <button type="submit" value="Logout" class="btn btn-login bg-red-500 hover:bg-red-700 transition duration-300 ease-in-out "> Logout</button>
-                </form>
-                {% else %}
-                <a href="{% url 'vendor:signup' %}" class="btn btn-signup">Sign up</a>
-                <a href="{% url 'vendor:login' %}" class="btn btn-login">Log in</a>
-                {% endif %}
-            </div>
-        </nav>
-        <div class="px-6 py-6">
-            <div class="mt-6 px-6 py-12 bg-blue-100 rounded-xl">
-                <h2 class="mb-12 text-2xl text-center"><b>My Stores</b></h2>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    
-                    {% for store in stores  %}
-                        <div > 
-                            <a href="{% url 'stores:detail' store.id %}">
-                            <div> 
-                                <img src="{{store.image.url}}" class = "w-full h-64 object-cover rounded-t-xl"> 
-                            </div>
+    <title>My store</title>
+</head>
 
-                            <div class=" p-6 bg-white rounded-b-xl">
-                                <h2 class="text-2xl card-title">{{store.name}} store</h2>
-                                <p class="text-gray-500 card-text">You own this store.</p>
-                            <a href="{% url 'stores:edit' store.id %}"
-                               class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-blue-500 text-white rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-200">
-                               Edit
+<body class="bg-gray-50">
+    <nav class="header">
+        <div class="logo-container">
+            <img src="{% static 'images/iconWomen.jpg' %}" class="logo-img">
+            <a class="logo-text" href="{% url 'vendor:index' %}">Vendors website</a>
+        </div>
+        <div class="nav-links">
+            <a href="{% url 'stores:new' %}" class="nav-link">Add store</a>
+            <a href="{% url 'my_store:index' %}" class="nav-link">My store</a>
+            <a href="{% url 'vendor:reviewInbox' %}" class="nav-link">Reviews</a>
+            {% if request.user.is_authenticated %}
+            <form action="{% url 'vendor:logout' %}" method="post">{% csrf_token%}
+                <button type="submit" value="Logout"
+                    class="btn btn-login bg-red-500 hover:bg-red-700 transition duration-300 ease-in-out ">
+                    Logout</button>
+            </form>
+            {% else %}
+            <a href="{% url 'vendor:signup' %}" class="btn btn-signup">Sign up</a>
+            <a href="{% url 'vendor:login' %}" class="btn btn-login">Log in</a>
+            {% endif %}
+        </div>
+    </nav>
+    <div class="px-6 py-6">
+        <div class="main-container">
+            <h2 class="h1-style"><b>My Stores</b></h2>
+
+            <div class="card">
+
+                {% for store in stores %}
+                <div class="c2">
+                    <a href="{% url 'stores:detail' store.id %}">
+                        <div>
+                            <img src="{{store.image.url}}" class="card-image">
+                        </div>
+
+                        <div class=" p-6 bg-white rounded-b-xl">
+                            <h2 class="card-title">{{store.name}} store</h2>
+                            <p class="card-text">You own this store.</p>
+                            <a href="{% url 'stores:edit' store.id %}" class="edit-button">
+                                Edit
                             </a>
-                            <a href="{% url 'stores:delete' store.id %}"
-                               class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-xl hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-200">
-                               Delete
+                            <a href="{% url 'stores:delete' store.id %}" class="delete-button">
+                                Delete
                             </a>
-                            </div>
+                        </div>
 
-                           
-                            </a>
+
+                    </a>
                 </div>
-               
+
                 {% endfor %}
-                </div>
             </div>
-
-            
-
-                  
-
-                </div>
-        </div>
         </div>
 
-        <footer class="footer1">
-            <div class="footer-about">
-                <h3 class="footer-title">About</h3>
-                <p class="footer-text">Vendor promotional website</p>
-            </div>
-    
-            <div class="footer-menu">
-                <h3 class="footer-title">Menu</h3>
-                <ul class="footer-links">
-                    <li><a href="/" class="footer-link">About</a></li>
-                    <li><a href="/" class="footer-link">Contact</a></li>
-                    <li><a href="/" class="footer-link">Privacy</a></li>
-                </ul>
-            </div>
-        </footer>
-    </body>
+
+
+
+
+    </div>
+    </div>
+    </div>
+
+    <footer class="footer1">
+        <div class="footer-about">
+            <h3 class="footer-title">About</h3>
+            <p class="footer-text">Vendor promotional website</p>
+        </div>
+
+        <div class="footer-menu">
+            <h3 class="footer-title">Menu</h3>
+            <ul class="footer-links">
+                <li><a href="/" class="footer-link">About</a></li>
+                <li><a href="/" class="footer-link">Contact</a></li>
+                <li><a href="/" class="footer-link">Privacy</a></li>
+            </ul>
+        </div>
+    </footer>
+
+</body>
+
 </html>
-
-
