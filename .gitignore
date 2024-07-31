@@ -9,3 +9,5 @@ env/
 .DS_Store
 *.env
 .env.*
+Django proj/myproj/db.sqlite3
+Django proj/myproj/db.sqlite3
