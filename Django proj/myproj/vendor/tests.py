@@ -151,6 +151,8 @@ class ViewsTests(TestCase):
         print(f" ")
         response = self.client.get(reverse('vendor:index'))
         self.assertTemplateUsed(response, 'vendor/index.html')
+        print(f"                            RESULT                                 ")
+        print("TEST PASSED: index.html returned")
 
     def test_SignUpView(self):
         """Show that the Sign Up views returns signUp.html"""
@@ -160,6 +162,8 @@ class ViewsTests(TestCase):
         print(f" ")
         response = self.client.get(reverse('vendor:signup'))
         self.assertTemplateUsed(response, 'vendor/signup.html')
+        print(f"                            RESULT                                 ")
+        print("TEST PASSED: signup.html returned")
         
     def test_UserSettingsView(self):
         """Show that the User Settings View returns userSettingsPage.html"""
@@ -169,4 +173,6 @@ class ViewsTests(TestCase):
         print(f" ")
         response = self.client.get(reverse('vendor:userSettingsPage'))
         self.assertTemplateUsed(response, 'vendor/userSettingsPage.html')
+        print(f"                            RESULT                                 ")
+        print("TEST PASSED: userSettingsPage.html returned")
         
