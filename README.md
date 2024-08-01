@@ -26,7 +26,7 @@ To run the test cases run: `python manage.py runserver`
 To run the test cases run: `python manage.py test` 
 
 
-## Project Structure(Relevenat Files)
+## Project Structure(Relevant Files)
 ```
 Django proj/
 ┣ myproj/
