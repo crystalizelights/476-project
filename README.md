@@ -1,4 +1,6 @@
 # 476-project
+## Link To Live Website
+https://dce143.pythonanywhere.com/
 
 ## Installing Django On Windows
 Follow this link to install Django https://docs.djangoproject.com/en/5.0/howto/windows/
@@ -25,7 +27,9 @@ To run the test cases run: `python manage.py runserver`
 ### Testing The Project
 To run the test cases run: `python manage.py test` 
 
-
+## Link To Design Documents
+Navigation Structure: https://www.figma.com/design/IEJb2VVUN3osR1E0k08Bn3/Local-Pages?node-id=0-1&t=Jm9g2gk96cLAeOpB-0) <br>
+Low-Level Prototype: https://www.canva.com/design/DAGFopQcmv0/H3oVLGWOS6AwGdji2m4eVQ/edit
 ## Project Structure(Relevant Files)
 ```
 Django proj/
