@@ -2,49 +2,3787 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image" href="{% static 'images/icon.png' %}" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{% load static %}
+	
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="icon" type="image" href="{% static 'images/uoe-logo-digital-black.png' %}" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <script>
-        $(document).ready(function () {
-            // Search for stores by name
-            $("#searchInput").on("keyup", function () {
-                var value = $(this).val().toLowerCase();
-                $("#store-container .store").filter(function () {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
+	<script>
+		$(document).ready(function () {
+			// Search for stores by name
+			$("#searchInput").on("keyup", function () {
+				var value = $(this).val().toLowerCase();
+				$("#store-container .store").filter(function () {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
+			});
 
-            // Show "Back to Top" button
-            var btn = $('#backToTopBtn');
-            $(window).scroll(function () {
-                if ($(window).scrollTop() > 300) {
-                    btn.addClass('flex');
-                    btn.removeClass('hidden');
-                } else {
-                    btn.addClass('hidden');
-                    btn.removeClass('flex');
-                }
-            });
+			// Show "Back to Top" button
+			var btn = $('#backToTopBtn');
+			$(window).scroll(function () {
+				if ($(window).scrollTop() > 300) {
+					btn.addClass('flex');
+					btn.removeClass('hidden');
+				} else {
+					btn.addClass('hidden');
+					btn.removeClass('flex');
+				}
+			});
 
-            btn.on('click', function (e) {
-                e.preventDefault();
-                $('html, body').animate({ scrollTop: 0 }, '300');
-            });
-        });
-    </script>
-    <title>Welcome | Vendors</title>
+			btn.on('click', function (e) {
+				e.preventDefault();
+				$('html, body').animate({ scrollTop: 0 }, '300');
+			});
+		});
+	</script>
+
+	<style>
+		/* Add your custom styles here */
+		@font-face {
+			font-family: 'Akzidenz Regular';
+			src:  url('webfonts/AkzidenzGroteskStd-Regular.ttf')  format('truetype'), 
+				  url('webfonts/AkzidenzGroteskStd-Regular.eot?#iefix') format('embedded-opentype');
+			font-weight: normal;
+			font-style: normal;
+		}
+
+		@font-face {
+			font-family: 'Akzidenz Medium';
+			src:  url('webfonts/AkzidenzGroteskStd-Md.ttf')  format('truetype'), 
+				  url('webfonts/AkzidenzGroteskStd-Md.eot?#iefix') format('embedded-opentype');
+			font-weight: normal;
+			font-style: normal;
+		}
+
+		@font-face {
+			font-family: 'Akzidenz Super';
+			src:  url('webfonts/AkzidenzGroteskStd-Super.ttf')  format('truetype'),  
+				  url('webfonts/AkzidenzGroteskStd-Super.eot?#iefix') format('embedded-opentype');
+			font-weight: normal;
+			font-style: normal;
+		}
+
+		/* === Main Layout Styling START === */
+
+		body {
+			font-family: 'Akzidenz Regular', Arial, Helvetica, sans-serif;
+			background: #aaa;
+			font-size: 16px;
+			color: #444;
+			padding: 0px;
+			margin: 0px;
+			border: 0px;
+		}
+
+		.wrapper {
+			width: 980px;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: 40px;
+			background-color: #fff;
+		}
+
+		.hidden, .skip { 
+			display: none; 
+		}
+
+		.clear {
+			clear: both;
+		}
+
+		b, strong, th {
+			font-weight: normal;
+			font-family: 'Akzidenz Medium';
+		}
+
+		/* === Main Layout Styling END === */
+
+		/* === Essex Logo Styling START === */
+
+		.logoBanner {
+			background-color: #1d1e19;
+			height: 105px;
+		}
+
+		.logoBanner img {
+			float: left;
+			border: 0px;
+		}
+
+		.siteSearch {
+			float: right;
+			margin: 0;
+			height: 35px;
+		}
+
+		.siteSearch input[type="text"] {
+			height: 35px;
+			border: 0;
+			margin: 0;
+			padding: 0;
+			padding-left: 10px;
+			width: 300px; 
+			autocomplete: off;
+			background-color: #333 !important;
+			vertical-align: top;
+			color: #aaa; 
+		}
+
+		.siteSearch input[type="submit"] {
+			margin: 0;
+			padding: 0;
+			background-color: #333; 
+			border: none; 
+			color: #fff; 
+			font-size: 75%;
+			height: 35px;
+			width: 35px;
+			vertical-align: top;
+			background-image: url('/images/search.png');
+		}
+
+		.siteSearch input[type="submit"]:hover { background-image: url('/images/search-hover.png'); }
+
+		.siteSearch select {
+			background-color: #333;
+			color: #aaa;
+			border: 1px solid #333;
+			height: 35px;
+			padding: 0 5px;
+			font-family: 'Akzidenz Regular';
+			vertical-align: top;
+			font-size: 14px;
+		}
+
+		.siteSearch select:hover {
+			color: #fff;
+		}
+
+		.siteSearch .twitter-typeahead {
+			z-index: 600;
+			vertical-align: top;
+		}
+
+		.siteSearch .tt-dropdown-menu {
+			margin-top: 20px;
+			width: 310px;
+		}
+
+		.siteSearch .tt-dropdown-menu a:link,
+		.siteSearch .tt-dropdown-menu a:visited,
+		.siteSearch .tt-dropdown-menu a:hover,
+		.siteSearch .tt-dropdown-menu a:active {
+			color: #292929;
+			text-decoration: none;
+		}
+
+		.siteSearch .tt-dropdown-menu a:hover {
+			text-decoration: underline;
+		}
+
+		.siteSearch a.searchQuickLink {
+			color: #aaa;
+			text-decoration: none;
+			padding-right: 15px;
+			font-size: 14px;
+			display: inline-block;
+			margin-top: 10px;
+		}
+
+		.siteSearch a.searchQuickLink:hover {
+			color: #fff;
+		}
+
+		/* === Essex Logo Styling END === */
+
+		/* ... (rest of the CSS remains unchanged) ... */
+
+        .callToActionTabs span {
+            margin-right: 4px;
+            font-size: 110%;
+            float: left;
+            width: 240px;
+            height: 31px;
+            background: #1d1e19;
+            text-align: center;
+            /* padding-left: 25px; */
+            padding-top: 9px;
+}
+
+.logoBanner {
+    background-color: #1d1e19;
+    height: 105px;
+}
+
+.callToAction {
+    background-color: #fff;
+    height: 40px;
+    margin-left: 4px;
+    margin-top: 4px;
+    color: #fff;
+    border-bottom: 4px solid #fff;
+}
+
+.megaMenu {
+    background-color: #303030;
+    height: 42px;
+    color: #000;
+    z-index: 500;
+    clear: both;
+    width: 980px;
+    display: block;
+    position: relative;
+}
+
+.menu {
+    display: table;
+    list-style: none;
+    width: 100%;
+    height: 42px;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li.fullwidth {
+    position: static !important;
+}
+
+.menu p, .menu ul, .menu li, .menu h2, .menu h3 {
+    font-size: 14px;
+    font-family: 'Akzidenz Regular', Arial, Helvetica, sans-serif;
+    text-align: left;
+    color: #333;
+}
+
+.menu li {
+    position: relative;
+    border: none;
+    display: table-cell;
+    text-align: center;
+}
+
+.menu li a {
+    text-decoration: none;
+    display: block;
+    font-size: 1.2em;
+    color: #aaa;
+    padding: 11px 34.25px;
+}
+
+.headingImage {
+    height: 193px;
+    border-left: 4px solid #fff;
+    width: 484px;
+    float: right;
+    background-image: url(/images/banner/rotating/rotating-image-4.jpg);
+}
+
+#sideNavigation {
+    float: left;
+    width: 22%;
+    padding: 0 0 0 0;
+    margin: 0 0 10px 0;
+}
+
+.sideNavigation {
+    background-color: #fff;
+    font-family: 'Akzidenz Medium';
+    color: #787878;
+    border-right: 1px solid #aaa;
+}
+
+.content {
+    background-color: #fff;
+    padding: 15px;
+    font-size: 90%;
+    padding-left: 235px;
+}
+
+/* All content-related styling goes in here (the WebAuthors stylesheet) so when Web Authors use SPD these classes are easy to find in the Apply Styles pane. */
+/* === Content Styling START === */
+
+h1
+{
+    font-size: 220%;
+    line-height: 1;
+}
+
+h2
+{
+    font-size: 150%;
+}
+
+h3
+{
+    font-size: 140%;
+}
+
+h4
+{
+    font-size: 120%;
+}
+
+h5
+{
+    font-size: 100%;
+}
+
+h1, h3, h5
+{
+    color: #2a2929;
+}
+
+h2, h4
+{
+    color: #7e2e6a;
+}
+
+h1, h2, h3, h4, h5
+{ 
+    font-family: 'Akzidenz Medium';
+    font-weight: normal;
+}
+
+h2+p, h3+p, h4+p, h5+p
+{
+    margin-top: -5px;
+}
+
+.bold
+{
+    font-weight: normal;
+    font-family: 'Akzidenz Medium';
+}
+
+.italic
+{
+    font-style: italic;
+}
+
+.smallerText
+{
+    font-size:85%;
+}
+
+.normal
+{
+    font-weight:normal;
+}
+
+.center
+{
+	text-align: center;
+}
+
+.marginBottom10
+{
+	margin-bottom: 10px;
+}
+
+.marginBottom20
+{
+	margin-bottom: 20px;
+}
+
+.marginBottom30
+{
+	margin-bottom: 30px;
+}
+
+.marginTop10
+{
+	margin-top: 10px;
+}
+
+.marginTop20
+{
+	margin-top: 20px;
+}
+
+#ContentMain_lblMetaDescription,
+#ContentMain_lblMetaKeywords
+{
+    display: none;
+}
+
+.content
+{
+    background-color: #fff;
+    padding: 15px;
+    font-size: 90%;
+    padding-left: 235px;
+}
+
+.content p
+{
+    line-height: 1.8;
+}
+
+.content a:link,
+.content a:visited,
+.content a:hover,
+.content a:active,
+.copyright a:link,
+.copyright a:visited,
+.copyright a:hover,
+.copyright a:active
+{
+    color: #444;
+    text-decoration: none;
+    border-bottom: 1px dotted #444;
+}
+
+.content a:hover,
+.content a:active,
+.copyright a:hover,
+.copyright a:active
+{
+    border-bottom: 1px solid #CD202C;
+    color: #CD202C;
+}
+
+.content a.external
+{
+	background: transparent url('/images/link-external.png') no-repeat center right;
+	padding-right: 15px;
+}
+
+.content ul
+{
+    padding-left: 15px;
+    margin-left: 20px;
+}
+
+.content ol
+{
+    padding-left: 20px;
+    margin-left: 20px;
+}
+
+.content ul li, .content ol li
+{
+    padding-bottom: 10px;
+    padding-left: 5px;
+    /*line-height: 1.4;*/
+}
+
+.content ul li
+{
+    /*list-style-image: url('/images/bullet_blue.gif');*/
+    list-style-type: square;
+}
+
+.content ol li ol li:first-child,
+.content ul li ul li:first-child
+{
+    padding-top: 10px;
+}
+
+.content ol li ol li:last-child,
+.content ul li ul li:last-child
+{
+    padding-bottom: 0px;
+}
+
+.content img
+{
+    border: 1px solid #aaa;
+    padding: 5px;
+    margin: 5px 10px 0px 5px;
+    background-color: #fff;
+}
+
+.content .tableDefault tr td a:link img,
+.content .tableDefault tr td a:visited img,
+.content .tableDefault tr td a:hover img,
+.content .tableDefault tr td a:active img,
+.content a:link img,
+.content a:visited img,
+.content a:hover img,
+.content a:active img
+{
+    margin: 0px;
+}
+
+.content .tableDefault img
+{
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+    background-color: transparent;
+}
+
+.content a:link .imgNoStyling,
+.content .imgNoStyling
+{
+    border: 0px;
+    padding: 0px;
+}
+
+.content a.noBorder,
+.content noBorder
+{
+    border: 0px;
+    border-width: 0px;
+}
+
+table.noBorder,
+table.noBorder th,
+table.noBorder td
+{
+    border: 0px;
+    border-width: 0;
+}
+
+.content .caption p
+{
+    background-color: #F6F6F6;
+    padding: 5px 10px 10px 10px;
+    margin: 0px 10px 0px 5px;
+    font-style: italic;
+    font-size: 90%;
+}
+
+.content .caption a
+{
+    border-bottom: 0px;
+}
+
+.content .caption p a
+{
+    border-bottom: 1px dotted #444;
+}
+
+.content .caption p a:hover
+{
+    border-bottom: 1px solid #CD202C;
+}
+
+.content .caption a img
+{
+    margin: 0px 0px 0px 5px;
+}
+
+.content .updatedStar /* Styling for Freshers */
+{
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+    margin-left: 5px;
+    margin-bottom: -5px;
+}
+
+/* Form styling START */
+
+.content input[type='submit'],
+.content input[type='reset'],
+.content .defaultButton
+{
+    background-color: #F6F6F6;
+    color: #444;
+    border: 2px solid #444;
+    padding: 8px 15px;
+    font-weight: normal;
+    font-family: 'Akzidenz Medium';
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+.content input[type='submit']:hover,
+.content input[type='reset']:hover,
+.content .defaultButton:hover
+{
+    background-color: #7e2e6a;
+    color: #fff;
+}
+
+input[type='submit'],
+input[type='reset'],
+.content .defaultButton
+{
+    cursor: pointer;
+}
+
+.content .defaultButton:link 
+{
+	border-bottom: 2px solid #e1d9c4;
+}
+
+.dlForm fieldset
+{
+    background-color: #F6F6F6;
+    border: 1px solid #444;
+}
+
+.dlForm dt
+{
+    font-weight: normal; font-family: 'Akzidenz Medium';
+    font-size: 110%;
+}
+
+.dlForm dd
+{
+    margin: 0px;
+    padding: 5px;
+}
+
+.dlForm dt span
+{
+    color: #9c0913;
+    font-weight: normal; font-family: 'Akzidenz Medium';
+    font-size: 130%;
+}
+
+.dlForm input[type='text'],
+.dlForm input[type='reset'],
+.dlForm textarea
+{
+    border: 3px solid #eee;
+    width: 98%;
+}
+
+
+.dlForm fieldset legend
+{
+    color: #7e2e6a;
+    font-weight: normal;
+    font-family: 'Akzidenz Medium';
+    font-size: 140%;
+}
+
+.tableForm th .mandatory, 
+.mandatory 
+{
+    color: #9c0913;
+    font-size: 130%;
+    font-weight: normal;
+}
+
+.errorMessage,
+.errorMessage h4,
+.success,
+.success h4
+{
+    color: #9c0913;
+    line-height: 1;
+    padding: 0px;
+    font-weight: normal;
+    font-family: 'Akzidenz Medium';
+    margin: 0px;
+}
+
+.errorMessage h4,
+.success h4
+{
+    padding-bottom: 5px;
+}
+
+.errorMessage, 
+.success,
+span.errorMessage,
+span.errorMessage:hover
+{
+    font-size: 10pt;
+    background: none;
+    border: 0px;
+    padding: 0px;
+}
+
+.success,
+.success h4
+{
+    color: #014800;
+}
+
+.tableForm
+{
+    width: 100%;
+}
+
+.tableForm table td,
+.tableForm table th
+{
+    border: 0px;
+}
+
+.tableForm input[type="text"],
+.tableForm input[type="password"],
+.tableForm select
+{
+    width: 98%;    
+}
+
+.tableForm.password input[type="text"],
+.tableForm.password input[type="password"],
+.tableForm.password select
+{
+    width: auto;
+}
+
+.tableForm th,
+.tableForm td,
+.tableForm caption
+{
+    text-align: left;
+    padding: 4px 8px;
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
+}
+
+.tableForm .errorMessage
+{
+    font-size: 90%;
+}
+
+.tableForm th
+{
+    background-color: #ccc;
+}
+
+.tableForm td
+{
+    background-color: #F6F6F6;
+}
+
+.tableForm caption
+{
+    background-color: #444;
+    color: #fff;
+    font-weight: normal;
+    font-family: 'Akzidenz Medium';
+    border-left: 2px solid #fff;
+    border-right: 4px solid #fff;
+    padding: 8px;
+}
+
+.tableForm th .mandatory,
+.tableForm td .mandatory
+{
+    color: #9c0913;
+    font-size: 130%;
+}
+
+/* Form styling END */
+
+.left
+{
+    float: left;
+}
+
+.right
+{
+    float: right;
+}
+
+.right img
+{
+    margin-right: 10px;
+}
+
+/* Styling for embedded Vimeo videos */
+.right.vimeo-embed { width: 350px; margin-left: 1em; background-color: #e9ebed; }
+.right.vimeo-embed  p { padding: 0 1em; }
+.right.vimeo-embed  ul  { padding: 0 3em; }
+
+blockquote
+{
+    background-color: #F6F6F6;
+    font-style: italic;
+    font-size: 140%;
+    font-family: 'Akzidenz Regular';
+    padding: 0 20px;
+    color: #7e2e6a;
+    line-height: 1.4;
+    border-left: 4px solid #CCC;
+}
+
+.content blockquote img
+{
+    float: left;
+    margin-right: 20px;
+    border: 1px solid #aaa;
+}
+
+.content blockquote a:link,
+.content blockquote a:visited,
+.content blockquote a:hover,
+.content blockquote a:active
+{
+    color: #292929;
+    border-bottom-color: #292929;    
+}
+
+.blockquote-name, 
+blockquote strong,
+blockquote b
+{
+    font-size: 90%; 
+    padding-top: 20px;
+    font-weight: normal;
+    font-family: 'Akzidenz Medium';
+    color: #000;
+    font-style: normal;
+}
+
+.contact
+{
+    background-color: #F6F6F6;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    border-left: 4px solid #aaa;
+    border-right: 4px solid #aaa;
+    padding: 0px 15px 15px 15px;
+}
+
+.contact h3
+{
+    color: #aaa;
+    font-size: 120%;
+    margin-bottom: 5px;
+}
+
+.contact .name
+{
+    font-size: 120%;
+    padding-top: 10px;
+    font-family: 'Akzidenz Medium';
+}
+
+.contact .organisation, 
+.contact .job-title
+{
+    font-family: 'Akzidenz Medium';
+}
+
+.contact dt,
+.contact dd
+{
+    display: inline;
+    padding: 0px;
+    margin: 0px;
+}
+
+.contact dl
+{
+    padding: 0px;
+    margin: 0px;
+}
+
+.contact .email
+{
+    padding-top: 10px;
+}
+
+.contact img
+{
+    float: right;
+    margin-top: 1%;
+    background-color: #fff;
+}
+
+.contact p 
+{
+    line-height: 1.1;
+}
+
+.contact span
+{
+    line-height: 2.0;
+}
+
+.textsplash
+{
+    background-color: #F6F6F6;
+    padding: 5px 15px;
+    margin: 10px 0;
+    border: 1px solid #aaa;  
+}
+
+.AtoZ a:link,
+.AtoZ a:visited,
+.AtoZ a:hover,
+.AtoZ a:active
+{
+    background-color: #F6F6F6;
+    padding: 5px 7px;
+    border-bottom: 0px;
+}
+
+.AtoZ a:hover,
+.AtoZ a:active,
+.AtoZ a.current
+{
+    background-color: #7e2e6a;
+    color: #fff;
+}
+
+.tableDefault
+{
+    font-size: 90%;
+    /*width: 100%;*/
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.FAQ .answer .tableDefault
+{
+    border-top: 3px solid #fff; 
+    border-left: 3px solid #fff;    
+}
+
+.tableDefault th, 
+.tableDefault caption
+{
+    background-color: #aaa; 
+    color: #fff; 
+    padding: 4px;
+    font-size: 110%;
+    font-weight: normal;
+    font-family: 'Akzidenz Medium';
+    text-align: left;
+    border-bottom: 3px solid #fff;
+    border-right: 3px solid #fff;
+    vertical-align: top;
+}
+
+.tableDefault caption
+{
+    background-color: #7e2e6a; 
+    text-align: center;
+}
+
+.tableDefault th a:link
+{
+    color: #fff;
+    border-color: #fff;
+}
+
+.tableDefault td 
+{ 
+    color: #333; 
+    padding: 4px;
+    border-bottom: 3px solid #fff;
+    border-right: 3px solid #fff;
+}
+
+.tableDefault tr 
+{ 
+    background-color: #F6F6F6;
+}
+
+.tableDefault tr.alt 
+{ 
+    background-color: #ccc; 
+}
+
+.tableDefault table,
+.tableDefault table td
+{
+    border: 0px;
+    background-color: #F7F5EF;
+}
+
+.tableDefault tr.alt table,
+.tableDefault tr.alt table td
+{
+    background-color: #EBE5D8;
+}
+
+.tableDefault#ContentMain_grdSearchResults, /* Course Finder table styling */
+.tableDefault#ContentMain_DetailsView1 /* SID staff profiles table styling */
+{
+    border: 1px solid #fff;
+}
+
+.tableDefault#ContentMain_grdSearchResults th,
+.tableDefault#ContentMain_grdSearchResults td,
+.tableDefault#ContentMain_DetailsView1 th,
+.tableDefault#ContentMain_DetailsView1 td
+{
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+}
+
+.tableDefault#ContentMain_DetailsView1 /* SID staff profiles table styling */
+{
+    margin-top: 20px;
+}
+
+.tableDefault.clearing tbody tr th
+{ 
+    background-color: #DA3D7E;
+    vertical-align: middle;
+    padding-left: 8px;
+}
+
+.download h3 { margin: 0 0 30px 0; }
+.download ul { margin: 0px; padding: 0px; }
+.download ul li { background: none; border-left: 4px solid #aaa; padding: 5px 0 10px 20px; margin-top: 15px; border-bottom: 1px dotted #aaa; font-size: 14px; list-style-image: none; list-style-type: none; }
+.download ul li li { list-style-image: url('/images/bullet_blue.gif'); border-left: 0; border-bottom: 0px; padding: 0px; margin: 0px; margin-left: 15px; padding: 5px; }
+.download h4 { font-size: 13px; padding: 2px 0 7px 25px; margin: 10px 0 0 0; }
+
+.download h4.pdf { background: url('/images/file_icons/iconFiletype_pdf.png') 0 0 no-repeat; }
+.download h4.doc { background: url('/images/file_icons/iconFiletype_doc.png') 0 0 no-repeat; } 
+.download h4.docx { background: url('/images/file_icons/iconFiletype_doc.png') 0 0 no-repeat; }
+.download h4.xls { background: url('/images/file_icons/iconFiletype_xls.png') 0 0 no-repeat; }
+.download h4.xlsx { background: url('/images/file_icons/iconFiletype_xls.png') 0 0 no-repeat; }
+.download h4.ppt { background: url('/images/file_icons/iconFiletype_ppt.png') 0 0 no-repeat; }
+.download h4.pptx { background: url('/images/file_icons/iconFiletype_ppt.png') 0 0 no-repeat; }
+.download h4.zip { background: url('/images/file_icons/iconFiletype_zip.png') 0 0 no-repeat; }
+.download h4.gif { background: url('/images/file_icons/iconFiletype_gif.png') 0 0 no-repeat; }
+.download h4.png { background: url('/images/file_icons/iconFiletype_png.png') 0 0 no-repeat; }
+.download h4.jpg { background: url('/images/file_icons/iconFiletype_jpeg.png') 0 0 no-repeat; }
+.download h4.jpeg { background: url('/images/file_icons/iconFiletype_jpeg.png') 0 0 no-repeat; }
+.download h4.mp3 { background: url('/images/file_icons/iconFiletype_mp3.png') 0 0 no-repeat; }
+.download h4.mp4 { background: url('/images/file_icons/iconFiletype_mp4.png') 0 0 no-repeat; }
+.download h4.avi { background: url('/images/file_icons/iconFiletype_avi.png') 0 0 no-repeat; }
+.download h4.wmv { background: url('/images/file_icons/iconFiletype_wmv.gif') 0 0 no-repeat; }
+.download h4.video { background: url('/images/file_icons/iconFiletype_video.png') 0 0 no-repeat; }
+
+.download p { margin: 0; font-size: 14px; }
+.download .datetime { border: none;  color: #2a2929; font-weight: normal; font-size: 'Akzidenz Medium'; }
+.download .meta { font-weight: normal; }
+.download .filesize { float: left; padding-left: 8px; }
+.download .type { float: left; }
+.download .description { padding: 20px 0; }
+
+a.download { background: url('/images/file_icons/iconFiletype_pdf.png') 0 0 no-repeat; padding-left: 20px; }
+a.download.pdf { background: url('/images/file_icons/iconFiletype_pdf.png') 0 0 no-repeat; }
+a.download.doc { background: url('/images/file_icons/iconFiletype_doc.png') 0 0 no-repeat; } 
+a.download.docx { background: url('/images/file_icons/iconFiletype_doc.png') 0 0 no-repeat; }
+a.download.xls { background: url('/images/file_icons/iconFiletype_xls.png') 0 0 no-repeat; }
+a.download.xlsx { background: url('/images/file_icons/iconFiletype_xls.png') 0 0 no-repeat; }
+a.download.ppt { background: url('/images/file_icons/iconFiletype_ppt.png') 0 0 no-repeat; }
+a.download.pptx { background: url('/images/file_icons/iconFiletype_ppt.png') 0 0 no-repeat; }
+a.download.zip { background: url('/images/file_icons/iconFiletype_zip.png') 0 0 no-repeat; }
+a.download.gif { background: url('/images/file_icons/iconFiletype_gif.png') 0 0 no-repeat; }
+a.download.png { background: url('/images/file_icons/iconFiletype_png.png') 0 0 no-repeat; }
+a.download.jpg { background: url('/images/file_icons/iconFiletype_jpeg.png') 0 0 no-repeat; }
+a.download.jpeg { background: url('/images/file_icons/iconFiletype_jpeg.png') 0 0 no-repeat; }
+a.download.mp3 { background: url('/images/file_icons/iconFiletype_mp3.png') 0 0 no-repeat; }
+a.download.mp4 { background: url('/images/file_icons/iconFiletype_mp4.png') 0 0 no-repeat; }
+a.download.avi { background: url('/images/file_icons/iconFiletype_avi.png') 0 0 no-repeat; }
+a.download.video { background: url('/images/file_icons/iconFiletype_video.png') 0 0 no-repeat; }
+
+/* jQuery UI Tabs START */
+
+.tabbed-box 
+{  
+	background: #fff;  
+	border: 1px solid #ddd; 
+	padding: 4px;  
+	margin: 0; 
+}
+
+.tabbed-box .tabs 
+{ 
+    margin: 0 0 0 0; 
+    padding: 0; 
+}
+
+.tabbed-box .tabs li 
+{
+    padding: 0; 
+    list-style: none; 
+    float: left; 
+    background: none; 
+}
+
+.tabbed-box .tabs li a 
+{ 
+    display: block; 
+    width: 100px; 
+    padding: 10px 10px 5px 10px; 
+    font-weight: normal; font-family: 'Akzidenz Medium'; 
+    text-align: center; 
+    text-decoration: none; 
+    height: 40px; 
+    color: #000; 
+    background-color: #F6F6F6;
+    border-right: 4px solid #fff; 
+    border-bottom: none; 
+}
+
+.tabbed-box .tabs li:first-child a 
+{ 
+    border-left: none; 
+}
+
+.tabbed-box .tabs li a:hover 
+{ 
+    background-color: #7e2e6a;
+    color: #fff;
+}
+
+.tabbed-box .tabs li a:focus 
+{ 
+    outline: none; 
+}
+
+.tabbed-box .tabs li a.active 
+{ 
+    background: #fff; 
+    color: #333; 
+    border-bottom: 1px solid #fff; 
+}
+
+.tabbed-content 
+{ 
+    padding: 60px 15px 5px 15px;
+    display: none; 
+}
+
+/* Non jQuery version of tabs */
+/* (essentially renamed so the JavaScript doesn't affect it) */
+
+.nonJS-tabbed-box 
+{ 
+    width: 100%;  
+    background: #fff;  
+    border: 1px solid #ddd;
+    border-bottom: 0px;
+    padding: 4px;  
+    margin: 0; 
+}
+
+.nonJS-tabbed-box .tabs 
+{ 
+    margin: 0 0 0 0; 
+    padding: 0; 
+}
+
+.nonJS-tabbed-box .tabs li 
+{
+    padding: 0; 
+    list-style: none; 
+    float: left; 
+    background: none; 
+}
+
+.nonJS-tabbed-box .tabs li a 
+{ 
+    display: block; 
+    width: 100px; 
+    padding: 10px 10px 5px 10px; 
+    font-weight: normal; font-family: 'Akzidenz Medium'; 
+    text-align: center; 
+    text-decoration: none; 
+    height: 40px; 
+    color: #222; 
+    background: #ebe5d8; 
+    border-right: 4px solid #fff; 
+    border-bottom: none; 
+}
+
+.nonJS-tabbed-box .tabs li:first-child a 
+{ 
+    border-left: none; 
+}
+
+.nonJS-tabbed-box .tabs li a:hover 
+{ 
+    color: #333; 
+}
+
+.nonJS-tabbed-box .tabs li a:focus 
+{ 
+    outline: none; 
+}
+
+.nonJS-tabbed-box .tabs li a.active 
+{ 
+    background: #fff; 
+    color: #333; 
+    border-bottom: 1px solid #fff; 
+}
+
+.nonJS-tabbed-content
+{ 
+    width: 100%;
+    padding: 4px;
+    border: 1px solid #ddd;
+    border-top: 0px;
+}
+
+.nonJS-tabbed-content div
+{
+    padding: 56px 11px 1px 11px;
+}
+
+.nonJS-tabbed-content div div
+{
+    padding: 0px;
+}
+
+/* jQuery UI CourseFinder Tabs START */
+
+.tabbed-box.crsdetails .sidepanel
+{
+	float: right;
+	margin: 10px 5px;
+	background-color: #aaa;
+    color: #fff;
+	padding: 5px 20px;
+	width: 200px;
+	border: 4px solid #fff;
+}
+
+.tabbed-box.crsdetails .sidepanel a { color: #fff; border-color: #fff; }
+
+@media screen and (-webkit-min-device-pixel-ratio:0) /* Stupid Chrome */
+{ 
+    .tabbed-box.crsdetails .sidepanel { margin-top: 60px; } 
+}
+
+.tabbed-box.crsdetails { width: 100%; background: #F6F6F6;  border: 1px solid #ddd; margin: 70px 0px 30px 0px; padding: 0; }
+.tabbed-box.crsdetails .tabs { margin: -51px 0 0 -1px; padding: 0; }
+.tabbed-box.crsdetails .tabs ul { margin: 0; padding: 0; }
+.tabbed-box.crsdetails .tabs li { list-style: none; float: left; }
+.tabbed-box.crsdetails .tabs li a { border: 1px solid #ddd; display: block; width: 120px; padding: 10px 4px 5px; font-weight: normal; font-family: 'Akzidenz Medium'; text-align: center; text-decoration: none; height: 34px; color: #fff; background: #7e2e6a; margin-right: 4px; font-size: 14px; }
+.tabbed-box.crsdetails .tabs li a:hover { background: #F6F6F6; color: #000; }
+.tabbed-box.crsdetails .tabs li a:focus { outline: none; }
+.tabbed-box.crsdetails .tabs li a.active { background: #F6F6F6; color: #333; border-bottom: 1px solid #F7F5EF; }
+.tabbed-box.crsdetails .tabs li a.applytab { background-color: #AA1B25; color: #fff; }
+.tabbed-box.crsdetails .tabs li a.applytab:hover { background-color: #CD202C; color: #fff; }
+.tabbed-box.crsdetails .tabs li a.visittab { background-color: #58A618; color: #fff; }
+.tabbed-box.crsdetails .tabs li a.visittab:hover { background-color: #418609; color: #fff; }
+.tabbed-box.crsdetails .tabs li a.pinkapplytab { background-color: #DA3D7E; color: #fff; }
+.tabbed-box.crsdetails .tabs li a.pinkapplytab:hover { background-color: #c12a68; color: #fff; }
+.tabbed-box.crsdetails .tabbed-content { width:auto; margin-top: 40px; padding-top: 10px; }
+.tabbed-box.crsdetails .tabbed-content.alt { clear: right; display: none; }
+
+/* jQuery UI CourseFinder Tabs END */
+
+/* jQuery UI Tabs END */
+
+.FAQ ul
+{
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.FAQ ul li
+{
+    list-style-image: none;
+    list-style-type: none;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.FAQ .question
+{
+    cursor: pointer;
+    color: #444;
+    padding: 10px;
+    padding-left: 24px;
+    font-size: 110%;
+    border: 0px;
+    margin: 0px;
+    border-bottom: 4px solid #fff;
+    background: #aaa url('/images/grey-arrow-right.png') no-repeat 5px 10px;
+}
+
+.FAQ .question:hover, 
+.FAQ .question:active,
+.FAQ .question.active
+{
+    background: #aaa url('/images/grey-arrow-down.png') no-repeat 5px 9px;
+}
+
+.FAQ .answer
+{
+    padding: 1px 15px;
+    margin: 0px;
+    border: 0px;
+    border-bottom: 4px solid #fff;
+    background-color: #F6F6F6;
+}
+
+.FAQ .answer ul
+{
+    padding-left: 15px;
+    margin-left: 20px;
+    margin-top: -8px;
+}
+
+.FAQ .answer ul li
+{
+    padding-bottom: 10px;
+    padding-left: 5px;
+    list-style-type: square;
+}
+
+.FAQ .answer ul li ul li:first-child
+{
+    margin-top: 5px;
+}
+
+.FAQ .answer ol
+{
+    margin-top: 20px;
+    padding-left: 15px;
+    margin-left: 20px;
+}
+
+.FAQ .answer ol li
+{
+    list-style-type: decimal;
+    padding-bottom: 10px;
+    padding-left: 5px;
+}
+
+.FAQ .answer ol li ol li:first-child
+{
+    margin-top: 5px;
+}
+
+.FAQ .answer .download ul li 
+{ 
+    list-style-image: none; 
+    list-style-type: none; 
+}
+
+.FAQ .answer .download ul li 
+{ 
+    background: none; 
+    border-left: 4px solid #7e2e6a; 
+    padding: 5px 0 10px 20px; 
+    margin-top: 15px; 
+    border-bottom: 1px dotted #7e2e6a;
+    font-size: 14px; 
+    list-style-image: none; 
+    list-style-type: none; 
+}
+
+.FAQ .answer .download ul 
+{ 
+    padding-bottom: 10px; 
+    padding-left: 0;
+    margin-left: 5px;
+}
+
+.FAQ .answer .download .datetime
+{
+    color: #7e2e6a;
+}
+
+.FAQ .answer .caption p
+{
+    padding: 5px 10px 10px 10px;
+    margin: 0px 10px 0px 5px;
+}
+
+.feature
+{
+    width: 214px;
+    float: right;
+    margin-left: 25px;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    background-color: #F6F6F6;
+}
+
+.feature a:link,
+.feature a:visited
+{
+    border-bottom: 1px dotted;
+}
+
+.feature a:hover,
+.feature a:active
+{
+    border-bottom: 1px solid;
+}
+
+.feature img
+{
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.feature .image a
+{
+    border: 0px;
+}
+
+.feature p
+{
+    padding: 0 10px;
+}
+
+.feature h2
+{
+    background-color: #7e2e6a;
+    color: #fff;
+    font-family: 'Akzidenz Medium';
+    padding: 5px 0px 6px 8px;
+    margin: 0px;
+    border: 0px;
+    width: 206px;
+    font-weight: normal;
+    font-size: 125%;
+}
+
+.feature h2.red
+{
+    background-color: #CD202C;
+}
+
+.feature h2.orange
+{
+    background-color: #ea8300;
+}
+
+.featureContainer
+{
+    float:left;
+}
+
+.featureBoxGrey div
+{
+    background-color: #F6F6F6;
+}
+
+.featureBoxGrey p
+{
+    padding: 0px 10px;
+}
+
+.feature.askEssex
+{
+    background-color: #d6d0c2;
+}
+
+.feature.askEssex h2
+{
+    background-color: #bf000c;
+}
+
+.feature.askEssex p
+{
+    padding: 0px 10px;    
+}
+
+.feature.askEssex input
+{
+    width: 85%;
+    margin-left: 7px;
+    padding: 5px;
+}
+
+.feature.askEssex button
+{
+    background-color: #bf000c;
+    color: #fff;
+    font-weight: normal; font-family: 'Akzidenz Medium';
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    padding: 10px;
+    font-style: normal;
+    margin: 5px;
+    margin-left: 7px;
+    cursor: pointer;
+}
+
+.feature.askEssex button:hover
+{
+    background-color: #7e2e6a;
+}
+
+.feature.faq h2
+{
+    background-color: #444;
+}
+
+.feature.faq li
+{
+    padding: 0px;
+    margin: 0px;
+}
+
+.feature.faq .question
+{
+    color: #444;
+    font-size: 90%;
+    padding: 10px;
+    padding-left: 20px;
+    margin: 0px;
+    background: #aaa url('/images/grey-arrow-right.png') no-repeat 5px 10px;
+}
+
+.feature.faq .question:hover, .feature.faq .question.active
+{
+    cursor: pointer;
+    background: #ccc url('/images/grey-arrow-down.png') no-repeat 5px 9px;
+}
+
+.feature.faq .answer
+{
+    background-color: #F6F6F6;
+}
+
+.feature.faq .answer p
+{
+    padding: 0px 10px 10px 10px;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.feature.faq ul
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+.feature.faq ul li
+{
+    list-style-type: none;
+    list-style-image: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.feature.facebook
+{
+    padding: 0px;
+    width: 262px;
+}
+
+.feature.facebook h2
+{
+    background: #3b5998 url('/images/facebook25px.png') no-repeat 5px 3px;
+    padding-left: 35px;
+    width: 227px;
+}
+
+.feature.facebook ul
+{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+.feature.facebook li
+{
+    list-style-image: none;
+    list-style-type: none;
+    margin: 0px;
+    padding: 8px 5px;
+    border: 0px;
+}
+
+.feature.facebook ul li a
+{
+    line-height: 1.3;
+}
+
+.feature.facebook li small
+{
+    color: #000;
+    font-size: 80%;
+    display: block;
+    padding-top: 5px;
+}
+
+.feature.facebook a
+{
+    color: #fff;
+    border-bottom: 1px dotted #fff;
+}
+
+.feature.facebook a:hover
+{
+    border-bottom: 1px solid #fff;
+}
+
+.feature.facebook .fbButton a
+{
+    border-bottom: 0px;
+}
+
+.feature.latestNewsStory p
+{
+    padding: 0px;
+}
+
+.feature.newsFeed .rssHeader
+{
+    display: none;
+}
+
+.feature.newsFeed h4 /* Newsfeed title */
+{
+    font-size: 100%;
+    padding: 4px 0px;
+    margin: 0px;
+    line-height: 1.5;
+}
+
+.feature.newsFeed .rssBody div /* Newsfeed date */
+{
+    font-style: italic;
+    font-size: 90%;
+    padding: 2px 0px;
+}
+
+.feature.newsFeed .rssBody p /* Newsfeed body */
+{
+    padding: 2px 0px;
+    margin: 0px;
+}
+
+.feature.newsFeed ul
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+.feature.newsFeed ul li
+{
+    list-style-type: none;
+    list-style-image: none;
+    margin: 0 10px;
+    padding: 0px;
+    border-bottom: 1px solid #b5b5b5;
+}
+
+.feature.newsFeed .feed-item-title
+{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+.feature.newsFeed #divMoreNews
+{
+	margin-top: 0.5em;
+}
+
+.feature.newsFeed #divMoreNews a
+{
+	font-weight: normal; font-family: 'Akzidenz Medium'; 
+}
+
+.feature.testimonial,
+.feature.testimonial h2,
+.feature.testimonial a:link
+{
+    background-color: #7e2e6a;
+    color: #fff;
+}
+
+.feature.testimonial p
+{
+    padding: 0px 15px;
+}
+
+.feature.testimonial p.quote
+{
+    font-size: 160%;
+    font-family: 'Akzidenz Regular';
+    letter-spacing: -0.02em;
+    line-height: 1.1em;
+}
+
+.feature.testimonial span.quoteOpen,
+.feature.testimonial span.quoteClosed
+{
+    font-size: 240%;
+    font-weight: normal; font-family: 'Akzidenz Medium';
+}
+
+.feature.testimonial span.quoteOpen
+{
+    float: left;
+    padding-right: 3px;
+    margin-top: 5px;
+    margin-bottom: -5px;
+}
+
+.feature.testimonial span.quoteClosed
+{
+    float: right;
+    padding-top: 5px;
+    padding-right: 10px;
+}
+
+.feature.testimonial small
+{
+    font-size: 85%;
+}
+
+.feature .twitter-timeline /* Used for new twitter widget (twitter class deprecated) */
+{
+	width: 262px;
+	height: 416px;
+}
+
+.feature.twitter
+{
+    background-color: #eff5f7;
+	margin-right: 0px;
+}
+
+.feature.twitter h2
+{
+    color: #1671c1;
+    background: #71c6e8 url('/images/twitter25px.png') no-repeat 5px 3px;
+    padding-left: 35px;
+    width: 179px;
+    margin-bottom: -5px;
+    height: 20px;
+	margin-bottom: -5px;
+	height: 20px;
+}
+
+.feature.twitter .rssHeader,
+.feature.twitter .rssBody p
+{
+    display: none;
+}
+
+.feature.twitter div /* Contains date and time */
+{
+    font-size: 95%;
+    font-weight: normal; font-family: 'Akzidenz Medium';
+    margin-top: -10px;
+}
+
+.feature.twitter a:link,
+.feature.twitter a:visited,
+.feature.twitter a:hover,
+.feature.twitter a:active
+{
+    font-weight: normal;
+    font-size: 90%;
+    color: #075675;
+}
+
+.feature.twitter ul
+{
+    margin: 0px;
+    padding: 0px;
+    padding: 0px 10px;
+}
+
+.feature.twitter ul li
+{
+    list-style-type: none;
+    list-style-image: none;
+    padding: 0px;
+}
+
+.feature.twitter .twitter-follow-button
+{
+    margin: 15px 0px 5px 10px;
+}
+
+.feature.whyEssex
+{
+    background-color: #f2ecde;
+}
+
+.feature.whyEssex h2
+{
+    background-color: #e98300;
+}
+
+.feature.whyEssex p
+{
+    padding: 0px 10px;
+}
+
+.feature .datetime { font-family: 'Akzidenz Medium'; padding: 10px; padding-bottom: 0; }
+
+.featureBoxes
+{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+.featureBoxes .feature
+{
+    float: left;
+    background-color: #fff;
+}
+
+.feature.course-search { padding: 15px 12px; min-height: 280px; width: 190px; }
+.feature.course-search, 
+.feature.course-search h2 { background-color: #d5efec; width: 190px; font-family: 'Akzidenz Regular'; color: #444; }
+.feature.course-search h2 { font-size: 170%; font-weight: normal; font-family: 'Akzidenz Medium'; }
+.feature.course-search input, 
+.feature.course-search select, 
+.feature.course-search .all-courses { margin: 14px 0; margin-bottom: 0; width: 190px; font-size: 110%; }
+.feature.course-search .all-courses { text-align: right; }
+.feature.course-search input[type="text"] { width: 175px; padding-left: 10px; }
+.feature.course-search input { height: 40px; }
+.feature.course-search select { height: 45px; padding-left: 8px; }
+
+.feature.course-search .btn-search { color: #fff; background-color: #65c6bb; border: 0; border-radius: 0; height: 45px; font-size: 115%; border: 1px solid #a9a9a9; }
+.feature.course-search .btn-search:hover { background-color: #43b5a8; color: #fff; }
+.feature.course-search .twitter-typeahead { display: inline-block; }
+
+#chooseEssex.feature.course-search { margin-right: 9px; }
+#chooseEssex.feature.course-search, 
+#chooseEssex.feature.course-search h2 { background-color: #2a2929; font-family: 'Akzidenz Regular'; color: #fff; }
+#chooseEssex.feature.course-search h2 { font-size: 110%; font-weight: normal; font-family: 'Akzidenz Medium'; }
+#chooseEssex.feature.course-search a:link,
+#chooseEssex.feature.course-search a:visited, 
+#chooseEssex.feature.course-search a:hover, 
+#chooseEssex.feature.course-search a:active { color: #fff; }
+#chooseEssex.feature.course-search input, 
+#chooseEssex.feature.course-search select, 
+#chooseEssex.feature.course-search .all-courses { margin: 14px 0; margin-bottom: 0; width: 100%; font-size: 110%; }
+#chooseEssex.feature.course-search .all-courses { text-align: right; }
+#chooseEssex.feature.course-search input[type="text"] { width: 97%; padding-left: 10px; }
+#chooseEssex.feature.course-search input { height: 40px; }
+#chooseEssex.feature.course-search select { padding-left: 8px; }
+#chooseEssex.feature.course-search .btn-search { color: #fff; background-color: #65c6bb; border: 0; border-radius: 0; height: 45px; font-size: 115%; border: 1px solid #a9a9a9; }
+#chooseEssex.feature.course-search .btn-search:hover { background-color: #43b5a8; color: #fff; }
+
+/* Start - Clearing CF search */
+#chooseEssex.feature.course-search.clearing-search, 
+#chooseEssex.feature.course-search.clearing-search h2 { background-color: #DA3D7E;}
+#chooseEssex.feature.course-search.clearing-search .btn-search { background-color: #000; }
+#chooseEssex.feature.course-search.clearing-search .btn-search:hover { background-color: #333;}
+/* End - Clearing CF search */
+
+
+.landing 
+{ 
+    margin-right: -58px; 
+}
+
+.landing .feature  
+{
+    margin: 0px; 
+    padding-right: 44px; 
+    background-color: transparent; 
+}
+
+.socialMediaLanding
+{
+    width: 180px;
+    padding-right: 30px;
+    padding-top: 50px;
+    padding-left: 20px;
+}
+
+.socialMediaLanding ul
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+.socialMediaLanding ul li
+{
+    list-style-type: none;
+    list-style-image: none;
+    padding-left: 45px;
+    min-height: 55px;
+    padding-bottom: 10px;
+}
+
+.socialMediaLanding ul li a:link,
+.socialMediaLanding ul li a:visited,
+.socialMediaLanding ul li a:hover,
+.socialMediaLanding ul li a:active
+{
+    border-bottom: 0px;
+}
+
+.socialMediaLanding ul li.facebook 
+{ 
+    background: url('/images/facebook.png') no-repeat 0px 2px;
+}
+
+.socialMediaLanding ul li.twitter 
+{ 
+    background: url('/images/twitter.png') no-repeat 0px 2px;
+}
+
+.socialMediaLanding ul li.instagram
+{ 
+    background: url('/images/instagram.png') no-repeat 0px 2px;
+}
+
+.socialMediaLanding ul li.linkedin 
+{ 
+    background: url('/images/linkedin.png') no-repeat 0px 2px;
+}
+
+.socialMediaLanding ul li.youtube 
+{ 
+    background: url('/images/youtube.png') no-repeat 0px 2px;
+}
+
+.socialMediaLanding ul li.vimeo 
+{ 
+    background: url('/images/vimeo.png') no-repeat 0px 2px;
+}
+
+.socialMediaLanding ul li a.rss 
+{ 
+    background: url('/images/rss.png') no-repeat 0px 2px;
+}
+.socialMediaLanding ul li.chatzy 
+{ 
+    background: url('/images/chatzy-icon.png') no-repeat 0px 2px;
+}
+.socialMediaLanding ul li.pinterest 
+{ 
+    background: url('/images/pinterest.png') no-repeat 0px 2px;
+}
+.socialMediaLanding ul li.browzer
+{ 
+    background: url('/images/browzer.gif') no-repeat 0px 2px;
+}
+.socialMediaLanding ul li.wordpress
+{ 
+    background: url('/images/wordpress.png') no-repeat 0px 2px;
+}
+
+/* Colours START */
+
+.white,
+.feature h2.white,
+.tabbed-box .tabs li a.white
+{
+    background-color: #fff;
+}
+
+.powder-blue,
+.feature h2.powder-blue,
+.tabbed-box .tabs li a.powder-blue
+{
+    background-color: #9EC3DE;
+}
+
+.aqua,
+.feature h2.aqua,
+.tabbed-box .tabs li a.aqua
+{
+    background-color: #72B5CC;
+}
+
+.sage,
+.feature h2.sage,
+.tabbed-box .tabs li a.sage
+{
+    background-color: #BAC696;
+}
+
+.yellow,
+.feature h2.yellow,
+.tabbed-box .tabs li a.yellow
+{
+    background-color: #F3D311;
+}
+
+.soft-red,
+.feature h2.soft-red,
+.tabbed-box .tabs li a.soft-red
+{
+    background-color: #A8475A;
+}
+
+.turquoise,
+.feature h2.turquoise,
+.tabbed-box .tabs li a.turquoise
+{
+    background-color: #00AFD8;
+}
+
+.mint,
+.feature h2.mint,
+.tabbed-box .tabs li a.mint
+{
+    background-color: #35C4B5;
+}
+
+.acid-green,
+.feature h2.acid-green,
+.tabbed-box .tabs li a.acid-green
+{
+    background-color: #BED600;
+}
+
+.gold,
+.feature h2.gold,
+.tabbed-box .tabs li a.gold
+{
+    background-color: #F2AF00;
+}
+
+.fifty,
+.feature h2.fifty,
+.tabbed-box .tabs li a.fifty
+{
+	background-color: #968b55;
+}
+
+.bright-pink,
+.feature h2.bright-pink,
+.tabbed-box .tabs li a.bright-pink
+{
+    background-color: #DA3D7E;
+}
+
+.cornflower,
+.feature h2.cornflower,
+.tabbed-box .tabs li a.cornflower
+{
+    background-color: #0065BD;
+}
+
+.seagrass,
+.feature h2.seagrass,
+.tabbed-box .tabs li a.seagrass
+{
+    background-color: #007A87;
+}
+
+.lime,
+.feature h2.lime,
+.tabbed-box .tabs li a.lime
+{
+    background-color: #58A618;
+}
+
+.sand,
+.feature h2.sand,
+.tabbed-box .tabs li a.sand
+{
+    background-color: #CA9B4A;
+}
+
+.dark-pink,
+.feature h2.dark-pink,
+.tabbed-box .tabs li a.dark-pink
+{
+    background-color: #A90061;
+}
+
+.royal-blue,
+.feature h2.royal-blue,
+.tabbed-box .tabs li a.royal-blue
+{
+    background-color: #002F57;
+}
+
+.bluebell,
+.feature h2.bluebell,
+.tabbed-box .tabs li a.bluebell
+{
+    background-color: #4C5CC5;
+}
+
+.leaf,
+.feature h2.leaf,
+.tabbed-box .tabs li a.leaf
+{
+    background-color: #008542;
+}
+
+.light-orange,
+.feature h2.light-orange,
+.tabbed-box .tabs li a.light-orange
+{
+    background-color: #E98300;
+}
+
+.crimson,
+.feature h2.crimson,
+.tabbed-box .tabs li a.crimson
+{
+    background-color: #6E273D;
+}
+
+.dark-purple,
+.feature h2.dark-purple,
+.tabbed-box .tabs li a.dark-purple
+{
+    background-color: #4B306A;
+}
+
+.violet,
+.feature h2.violet,
+.tabbed-box .tabs li a.violet
+{
+    background-color: #622567;
+}
+
+.forest,
+.feature h2.forest,
+.tabbed-box .tabs li a.forest
+{
+    background-color: #275E37;
+}
+
+.dark-orange,
+.feature h2.dark-orange,
+.tabbed-box .tabs li a.dark-orange
+{
+    background-color: #D55C19;
+}
+
+.scarlet,
+.feature h2.scarlet,
+.tabbed-box .tabs li a.scarlet
+{
+    background-color: #CD202C;
+}
+
+.light-grey,
+.feature h2.light-grey,
+.tabbed-box .tabs li a.light-grey
+{
+    background-color: #C6C6BC;
+}
+
+.oatmeal,
+.feature h2.oatmeal,
+.tabbed-box .tabs li a.oatmeal
+{
+    background-color: #D3BF96;
+}
+
+.cappuccino,
+.feature h2.cappuccino,
+.tabbed-box .tabs li a.cappuccino
+{
+    background-color: #AAA38E;
+}
+
+.olive,
+.feature h2.olive,
+.tabbed-box .tabs li a.olive
+{
+    background-color: #AEAA6C;
+}
+
+.mocha,
+.feature h2.mocha,
+.tabbed-box .tabs li a.mocha
+{
+    background-color: #776F65;
+}
+
+.dark-grey,
+.feature h2.dark-grey,
+.tabbed-box .tabs li a.dark-grey
+{
+    background-color: #51626F;
+}
+
+.silver-grey,
+.feature h2.silver-grey,
+.tabbed-box .tabs li a.silver-grey
+{
+    background-color: #e9ebed;
+}
+
+.charcoal,
+.feature h2.charcoal,
+.tabbed-box .tabs li a.charcoal
+{
+    background-color: #2a2929;
+}
+
+.beige,
+.feature h2.beige,
+.tabbed-box .tabs li a.beige
+{
+    background-color: #f2ecde;
+}
+
+/* Colours END */
+
+/* Styling for new testimonial box START */
+
+.what-they-say.feature h2.name.white { color: #fff; }
+.what-they-say.feature h2.name.powder-blue { color: #9EC3DE; }
+.what-they-say.feature h2.name.aqua { color: #72B5CC; }
+.what-they-say.feature h2.name.sage { color: #BAC696; }
+.what-they-say.feature h2.name.yellow { color: #F3D311; }
+.what-they-say.feature h2.name.soft-red { color: #A8475A; }
+.what-they-say.feature h2.name.turquoise { color: #00AFD8; }
+.what-they-say.feature h2.name.mint { color: #35C4B5; }
+.what-they-say.feature h2.name.acid-green { color: #BED600; }
+.what-they-say.feature h2.name.gold { color: #F2AF00; }
+.what-they-say.feature h2.name.fifty { color: #968b55; }
+.what-they-say.feature h2.name.bright-pink { color: #DA3D7E; }
+.what-they-say.feature h2.name.cornflower { color: #0065BD; }
+.what-they-say.feature h2.name.seagrass { color: #007A87; }
+.what-they-say.feature h2.name.lime { color: #58A618; }
+.what-they-say.feature h2.name.sand { color: #CA9B4A; }
+.what-they-say.feature h2.name.dark-pink { color: #A90061; }
+.what-they-say.feature h2.name.royal-blue { color: #002F57; }
+.what-they-say.feature h2.name.bluebell { color: #4C5CC5; }
+.what-they-say.feature h2.name.leaf { color: #008542; }
+.what-they-say.feature h2.name.light-orange { color: #E98300; }
+.what-they-say.feature h2.name.crimson { color: #6E273D; }
+.what-they-say.feature h2.name.dark-purple { color: #4B306A; }
+.what-they-say.feature h2.name.violet { color: #622567; }
+.what-they-say.feature h2.name.forest { color: #275E37; }
+.what-they-say.feature h2.name.dark-orange { color: #D55C19; }
+.what-they-say.feature h2.name.scarlet { color: #CD202C; }
+.what-they-say.feature h2.name.light-grey { color: #C6C6BC; }
+.what-they-say.feature h2.name.oatmeal { color: #D3BF96; }
+.what-they-say.feature h2.name.cappuccino { color: #AAA38E; }
+.what-they-say.feature h2.name.olive { color: #AEAA6C; }
+.what-they-say.feature h2.name.mocha { color: #776F65; }
+.what-they-say.feature h2.name.dark-grey { color: #51626F; }
+.what-they-say.feature h2.name.charcoal { color: #2a2929; }
+.what-they-say.feature h2.name.beige { color: #f2ecde; }
+.what-they-say.feature h2.name.silver-grey { color: #e9ebed; }
+
+.container-box.mint { display: inline-block; width: 100%; background: #D7FAF6}
+.container-box.pale { display: inline-block; width: 100%; background: #F6F6F4}
+.what-they-say.extra { margin: 1.5em; display: inline-block; margin-top: 0.5em; }
+.what-they-say.feature { background-color: #2a2929; margin: 0; margin-right: 1em; float: left; }
+.what-they-say.feature h2 { width: auto; background-color: #2a2929; }
+.what-they-say.feature h2.name { color: #58a618; margin: 0; margin-top: 0.2em; margin-right: 0.2em; }
+.what-they-say.feature h2.degree { font-size: 110%; padding-top: 0; margin: 0; line-height: 1.5; margin-right: 0.2em; }
+.what-they-say.right { background-color: transparent; width: 66.5%; padding: 0; margin-right: 0.5em; font-size: 100%; margin-top: 1em; }
+.tabbed-box .what-they-say.right { width: 64.5%; }
+.FAQ .what-they-say.right { width: 65.5%; }
+
+/* Styling for new testimonial box END */
+
+/* Div 'Table' Form START */
+
+.divTable input[type="text"], .divTable textarea
+{
+    width: 98%;
+}
+
+.divColumnRightList label
+{
+    padding-left: 5px;
+}
+
+.divTable textarea
+{
+    min-height: 60px;
+}
+
+.divColumnLeft, .divColumnLeftList, .divMessage, .divColumnRight, .divColumnRightList, .divTitle 
+{
+    background-color: #ccc;
+    float: left;
+    color: #444444;
+    height: 27px;
+    width: 35%;
+    padding-left: 10px;
+    padding-top: 10px;
+    font-weight: normal;
+    font-family: 'Akzidenz Medium';
+    border-bottom: 4px solid #fff;
+}
+
+.divColumnRight, .divColumnRightList 
+{
+    background-color:#F6F6F6;
+    float: right; 
+    width: 61.75%;
+    padding: 5px;
+    font-weight: normal;
+}
+
+.divTitle 
+{
+    background-color: #444; 
+    color: #FFF;
+    width: 99%;
+    padding-left: 8px;
+    font-weight: normal;
+    font-family: 'Akzidenz Medium';
+}
+
+.divMessage
+{
+    text-align: center;
+    width: 99%;
+    font-weight: normal;
+    padding-left: 7px;
+}
+
+.divColumnLeftList, .divColumnRightList, .divRowList
+{ 
+    min-height: 80px;
+} 
+
+.divButton
+{
+     clear: both;
+     text-align: right;
+}
+
+/* Div 'Table' Form END */
+
+.disabledGo
+{
+    background-color: #9EC3DE;
+    padding: 5px 5px 5px 15px;
+    margin: 10px;
+    line-height: 0.5;
+    min-height: 50px;
+}
+
+.disabledGo h2
+{
+    font-size: 110%;
+}
+
+.disabledGo img
+{
+    float: right;
+    border: 0px;
+    margin: 0px;
+}
+
+
+/* Student Landing Page START */
+
+.studentLandingBox 
+{
+    background-color: #e5e7e9;
+    font-size: 100%;
+    margin-top: 0px;
+    height: 150px;
+    margin-bottom: 20px;
+    padding-right: 7px;
+}
+
+.studentLandingBox h1
+{
+    font-size: x-large;
+    padding-top: 10px;
+    color: #51616e;
+}
+
+.studentLandingBox p
+{
+    padding: 3px;
+    padding-top: 0px;
+    margin-top: 3px;
+    font-size: 100%;
+    line-height: 1.4;
+}
+.studentLandingBox img
+{
+    float: left;
+    border: 0;
+    padding: 0px;
+    padding-right: 10px;
+    margin: 0;
+    height: 150px;
+    width: 120px;
+}
+
+.studentLandingBox.small
+{
+    height: 65px;
+    width: 48%;
+    margin-bottom: 20px;
+}
+
+.studentLandingBox.small h1
+{
+    font-size: small;
+    padding-top: 5px;
+    margin: 0px;
+}
+
+.studentLandingBox.small img
+{
+    padding: 5px;
+    padding-top: 1px;
+    height: 60px;
+    width: 60px;
+}
+
+.studentLandingBox.small p
+{
+    padding: 3px;
+    padding-top: 0px;
+    margin-top: 3px;
+    font-size: 100%;
+    line-height: 1.2;
+}
+
+.studentLandingLinks .facebook img
+{
+    padding: 0; 
+    border-style: none;
+    margin-right: 0;
+}
+
+.studentLandingLinks
+{
+    margin-bottom: 5px;
+    height: 50px;
+    padding-right: 0;
+    margin-right: 0;
+    padding-left: 34px;
+}
+
+/* Student Landing Page END */ 
+
+/* Student Landing New Page START */
+
+.studentLandingAlert
+{
+	background-color: #E9EBED;
+	font-size: 100%;
+	height: 305px;
+	width: 510px;
+	margin-bottom: 5px;
+}
+
+.studentLandingAlert  h2
+{
+	padding-top: 10px;
+	padding-left: 10px;	
+	margin-top: 0;
+}
+
+.studentLandingAlert  p
+{
+	padding-right: 10px;
+	padding-left: 10px;
+	line-height: 1.5;
+}
+
+.studentLandingAlert  img
+{
+	float: right;
+	border: 0;
+	margin: 0;
+	padding-top: 0;
+	padding-right: 0;
+	height: 305px;
+	width: 225px;
+}
+
+.studentLandingAlert  ul
+{
+	margin-left: 10px;
+}
+
+.studentLandingSignpost
+{
+	background-color: #E9EBED;
+	height: 80px;
+	width: 510px;
+	margin-bottom: 5px;
+}
+
+.studentLandingSignpost h3
+{
+	font-family: 'Akzidenz Regular';
+	font-size: medium;
+	padding: 2px;
+	padding-top: 10px;
+	margin: 0;
+}
+
+.studentLandingSignpost img
+{
+	float: left;
+	border: 0;
+	padding: 0;
+	padding-right: 7px;
+	height: 80px;
+	width: 80px;
+}
+
+.studentLandingSignpost p
+{
+	padding: 5px;
+	padding-top: 1px;
+	margin-top: 2px;
+	font-size: 100%;
+	line-height: 1.5;
+}
+
+.studentLandingSignpost.small
+{
+	background-color: #D3D7DB;
+	height: 80px;
+	width: 215px;
+	margin-right: 0;
+	margin-bottom: 5px;
+}
+
+.studentLandingSignpost.small h2
+{
+	font-family: 'Akzidenz Regular';
+	font-size: medium;
+	padding-top: 20px;
+	margin: 0;
+}
+
+.studentLandingSignpost.small.pink
+{
+	background-color: #F2BBD2;
+}
+
+.studentLandingSignpost.small.seagrasspale
+{
+	background-color: #B2D7DB;
+}
+
+.studentLandingSignpost.gold
+{
+	background-color: #F2AF00;
+}
+
+.studentLandingSignpost.oatmeal
+{
+	background-color: #D3BF96;
+}
+
+.feature.students
+{
+	background-color: #FFFFFF;
+	height: 272px;
+	width: 222px;
+	margin-bottom: 0;
+	margin-top: 0
+}
+
+ .feature.students h2
+{
+	color: white;
+	padding-left: 12px;
+}
+ .feature.students ul
+{
+	padding-left: 26px;
+}
+
+.feature.popular-links 
+{
+	margin-left: 0;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+.feature.popular-links ul
+{
+	padding-left: 25px;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+/* Student Landing New page End */
+
+/*  Start of groups-and-list (nee Mailinglists)*/
+    .groupsAndListsTBoxes
+    {
+        width: 400px;
+        Height: 42px;
+        font-family: 'Akzidenz Regular';
+        font-size: 14px;
+    }
+    .groupsAndListsLbMessage
+    {
+        color:brown;
+        font-size:12px;
+    }
+    .groupsAndListsPnPanel
+    {
+        width:405px;
+    }
+     .groupsAndListsPnPanelCheckBoxList
+    {
+       border:1px solid black;
+       height:500px;
+       width:400px;
+       background-color:whitesmoke;
+    }
+/*  End of groups-and-list (nee Mailinglists)*/
+
+
+/*  /vacancies pages */
+    .vacancies-salary { padding-left: 80px; }
+    .vacancies-closing-date { padding-left: 41px; }
+
+    .accommodation-flickr
+    {
+        height: 285px;
+    }
+    .accommodation-flickr .flickr-embed-frame 
+    {
+        height: 268px !important;
+    }
+
+
+/* === Content Styling END === */
+/* 
+
+_Useful colours_
+
+Beige (from background): #f8f5ed;
+Dark grey (from search button): #78756b;
+Darkest grey (colour of text, some headings): #444;
+Blue (table caption, h2, h4): #0056A1;
+Dark red (from CTA menu): #9e0813;
+Darker red (from CTA menu hover): #8b0711;
+ 
+
+_New colours_
+Medium grey (body background colour): #aaa;
+Light grey (content background colour): #F6F6F6;
+Red (accent): #CD202C;
+Purple (accent): #7e2e6a;
+Dark grey (text): #444;
+Dark grey (mega menu): #303030;
+Nearly black (logo bar background, CTA background): #1D1E19;
+Nearly black (footer background): #181818;
+Nearly black (headings): #2a2929;
+Charcoal (copyright background): #333;
+
+*/
+
+@font-face {
+  font-family: 'Akzidenz Regular';
+  src:  url('webfonts/AkzidenzGroteskStd-Regular.ttf')  format('truetype'), 
+        url('webfonts/AkzidenzGroteskStd-Regular.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Akzidenz Medium';
+  src:  url('webfonts/AkzidenzGroteskStd-Md.ttf')  format('truetype'), 
+        url('webfonts/AkzidenzGroteskStd-Md.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Akzidenz Super';
+  src:  url('webfonts/AkzidenzGroteskStd-Super.ttf')  format('truetype'),  
+        url('webfonts/AkzidenzGroteskStd-Super.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* === Main Layout Styling START === */
+
+body 
+{
+	font-family: 'Akzidenz Regular', Arial, Helvetica, sans-serif;
+    background: #aaa;
+	font-size: 16px;
+	color: #444;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}
+
+.wrapper
+{
+	width: 980px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 40px;
+	background-color: #fff;
+}
+
+.hidden, .skip
+{ 
+	display: none; 
+}
+
+.clear
+{
+	clear: both;
+}
+
+b, strong, th 
+{
+    font-weight: normal;
+    font-family: 'Akzidenz Medium';
+}
+
+/* === Main Layout Styling END === */
+
+/* === Essex Logo Styling START === */
+
+.logoBanner
+{
+	background-color: #1d1e19;
+	height: 105px;
+}
+
+.logoBanner img
+{
+	float: left;
+	border: 0px;
+}
+
+.siteSearch
+{
+	float: right;
+	margin: 0;
+    height: 35px;
+}
+
+.siteSearch input[type="text"]
+{
+	height: 35px;
+    border: 0;
+	margin: 0;
+	padding: 0;
+    padding-left: 10px;
+	width: 300px; 
+	autocomplete: off;
+    background-color: #333 !important;
+    vertical-align: top;
+    color: #aaa; 
+}
+
+.siteSearch input[type="submit"]
+{
+	margin: 0;
+	padding: 0;
+	background-color: #333; 
+	border: none; 
+	color: #fff; 
+	font-size: 75%;
+	height: 35px;
+	width: 35px;
+    vertical-align: top;
+    background-image: url('/images/search.png');
+}
+
+.siteSearch input[type="submit"]:hover { background-image: url('/images/search-hover.png'); }
+
+.siteSearch select
+{
+    background-color: #333;
+    color: #aaa;
+    border: 1px solid #333;
+    height: 35px;
+    padding: 0 5px;
+    font-family: 'Akzidenz Regular';
+    vertical-align: top;
+    font-size: 14px;
+}
+
+.siteSearch select:hover
+{
+    color: #fff;
+}
+
+.siteSearch .twitter-typeahead
+{
+	z-index: 600;
+    vertical-align: top;
+}
+
+.siteSearch .tt-dropdown-menu
+{
+    margin-top: 20px;
+    width: 310px;
+}
+
+.siteSearch .tt-dropdown-menu a:link,
+.siteSearch .tt-dropdown-menu a:visited,
+.siteSearch .tt-dropdown-menu a:hover,
+.siteSearch .tt-dropdown-menu a:active
+{
+    color: #292929;
+    text-decoration: none;
+}
+
+.siteSearch .tt-dropdown-menu a:hover
+{
+    text-decoration: underline;
+}
+
+.siteSearch a.searchQuickLink
+{
+    color: #aaa;
+	text-decoration: none;
+    padding-right: 15px;
+    font-size: 14px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.siteSearch a.searchQuickLink:hover
+{
+    color: #fff;
+}
+
+/* === Essex Logo Styling END === */
+
+/* === Mega Menu Styling START === */
+
+/* Taken from Headscape's stylesheet (modified by JCM) */
+
+.megaMenu { background-color: #303030; height: 42px; color: #000; z-index: 500; clear: both; width: 980px; display: block; position: relative;  }
+.megaMenu.norm { display: block; }
+.menu { display: table; list-style: none; width: 100%; height: 42px; margin: 0; padding: 0;  }
+.menu li { position: relative; border: none; display: table-cell; text-align: center; }
+
+.menu li.fullwidth { position: static !important; }
+.menu li.hover { background: #fff; }
+.menu li a { text-decoration: none; display: block; font-size: 1.2em; color: #aaa; padding: 11px 34.25px; }
+.menu li a:hover { background: #fff !important; }
+
+.menu li.active a { background: #e5dcc6; }
+.menu li:hover a { color: #CD202C; background: #fff; text-shadow: none; position: relative; z-index: 11; }
+.menu li.hover div a { display: inline; text-decoration: none; text-shadow: none; border: none; padding: 0; }
+
+.menu .dropdown_fullwidth { left: -999em; display: block; position: absolute; z-index: 999; background: #fff; border: 4px solid #F6F6F6; border-top: none; text-align: left; width: 923px; margin: 13px 0 0; padding: 25px; -webkit-box-shadow: 0px 9px 11px rgba(3,3,3,0.1); -moz-box-shadow: 0px 9px 11px rgba(3,3,3,0.1); box-shadow: 0px 9px 11px rgba(3,3,3,0.1); }
+
+.menu li.hover .dropdown_fullwidth { left: 0; top: 30px; }
+.menu li.hover .align_right { left: auto; right: -1px; top: 25px; }
+.menu li.right .dropdown_fullwidth { right: 18px; top: 33px; }
+
+.menu .col_1,.menu .col_2,.menu .col_3,.menu .col_4,.menu .col_5,.menu .col_6 { display: inline; float: left; position: relative; margin-left: 20px; }
+.menu .col_1 { margin-top: 10px; width:152px; margin-left: 25px; border-left: 1px solid #F6F6F6; padding-left: 13px; margin-left: 13px; }
+.menu .col_1.narrow { width:100px; margin-left: 25px; border-left: 1px solid #F6F6F6; padding-left: 13px; margin-left: 13px; }
+.menu .col_1.wide { width:200px; margin-left: 25px; border-left: 1px solid #F6F6F6; padding-left: 13px; margin-left: 13px; }
+.menu .col_1.mid { width:120px; margin-left: 25px; border-left: 1px solid #F6F6F6; padding-left: 13px; margin-left: 13px; }
+
+.menu .col_4 { width: 710px; border-left: 1px solid #F6F6F6; padding-left: 13px; margin-left: 13px; }
+.menu .col_3 { width: 510px; border-left: 1px solid #F6F6F6; padding-left: 13px; margin-left: 13px; }
+.menu .col_2 { width: 310px; border-left: 1px solid #F6F6F6; padding-left: 13px; margin-left: 13px; }
+
+.menu .firstcolumn { margin-left: 0; clear: left; border-left: none; padding-left: 0 !important;  }
+
+.menu p,.menu ul,.menu li,.menu h2,.menu h3 { font-size: 14px; font-family: 'Akzidenz Regular', Arial, Helvetica, sans-serif; text-align: left; color: #333; }
+.menu p { color: #555; font-size: 12px; text-shadow: 1px 1px 1px #efefef; margin: 0 0 10px 0; line-height: 1.7; }
+.menu .strong { font-family: 'Akzidenz Super'; }
+.menu .italic { font-style: italic;}
+.menu h2,.menu h3 a { margin-top: -5px; }
+
+.menu h2 { display: block; font-weight: normal; padding-bottom: 5px; letter-spacing: -0.05em; font: 18px Vollkorn,"Times New Roman",Times,serif; }
+.menu h2 a { color: #555 !important; background: none; }
+.menu h2 a:hover { color: #000 !important; }
+
+.col_3 h2, .col_2 h2 { padding: 10px 0 0 0; }
+
+.menu h3 { border: none; float: left; font-size:12px; padding:0 0 5px 10px; background: url(../images/right8.png) 0 0 no-repeat; }
+.menu h3 a { font-family: 'Akzidenz Super'; color: #555 !important; }
+.menu h3 a:hover { font-family: 'Akzidenz Super'; color: #000 !important; }
+
+.menu img { padding: 4px; margin-bottom: 5px; background: #fff; border: 1px solid #ddd; }
+.menu img:hover { padding: 4px; background: #fff; border: 1px solid #555; }
+
+.menu li.hover .col_1 ul { list-style: none; margin: 0 0 12px 0; padding: 0; margin: 0; }
+.menu li.hover .col_1 ul li { font-size: 12px; position: relative; float: left;  width: 150px; margin: 0 0 1px 0; padding: 0 0 5px 0; }
+.menu li.hover .col_1 ul.strong li { font-size: 13px; font-weight: normal; position: relative; float: left; width: 155px;  margin:0 0 10px 0;  line-height: 0px;  }
+.menu li.hover .col_1 ul.strong li a { background: url('/images/grey-right-arrow.png') 0 0 no-repeat !Important;  color: #555; line-height: 15px; }
+.menu li.hover .col_1 ul.strong li a:hover { background: url('/images/grey-right-arrow-filled.png') 0 0 no-repeat !Important;  }
+
+.menu li.hover .col_1.narrow ul li { width: 100px; }
+.menu li.hover .col_1 ul li a { background: url('/images/grey-right-arrow.png') 0 0 no-repeat;  float: left; padding:0 0 0 10px;  display: block; color: #666; }
+.menu li.hover .col_1 ul li a:hover { background: url('/images/grey-right-arrow-filled.png') 0 0 no-repeat !important; color: #000; }
+
+.menu li.hover ul.mm_rsList li a { background: none; padding: 8px 0 0 0; }
+
+.menu li.hover ul.mm_rsList li .datetime { margin: 0; font-size: 0.9em; text-decoration: none; border-bottom: none; padding: 0; font-family: 'Akzidenz Super'; padding-bottom: 8px; }
+.menu li.hover ul.mm_rsList li abbr { border-bottom: none;  }
+.menu li.hover ul.mm_rsList li a { padding: 0 0 10px 0; margin: 0;  }
+
+/* === Mega Menu Styling END === */
+
+/* === CTA Menu Styling START === */
+
+.callToAction
+{
+	background-color: #fff;
+	height: 40px;
+	margin-left: 4px;
+	margin-top: 4px;
+	color: #fff;
+    border-bottom: 4px solid #fff;
+}
+
+.callToActionTabs span
+{
+	margin-right: 4px;
+    font-size: 110%;
+	float: left;
+	width: 240px;
+	height: 31px;
+	background: #1d1e19;
+    text-align: center;
+	/*padding-left: 25px;*/
+	padding-top: 9px;
+}
+
+.callToActionTabs span:hover,
+.callToActionTabs .active span
+{
+	cursor: pointer;
+    background: #d94334; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, #612563, #d94334); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #612563, #d94334); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #612563, #d94334); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #612563, #d94334); /* Standard syntax */
+}
+
+.callToActionTabs a
+{
+	font-size: 105%;
+}
+
+.callToAction a
+{
+	color: #fff;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-family: 'Akzidenz Super';
+}
+
+.preFilledTextField
+{
+	color: #888;
+	font-style: italic;
+}
+
+.hide
+{
+	display: none;
+}
+
+/* Tooltip hover START */
+
+.normalTip 
+{
+	text-transform: none;
+	font-size: 12px;
+	background-image: none;
+	background: none;
+}
+
+.aToolTip {
+	border: 2px solid #2A2929;
+	background: #f2ecde;
+	color: #555;
+	font-size: 90%;
+	margin: 0;
+	padding: 6px 12px;
+}
+
+.aToolTip .aToolTipContent {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	width: 300px;
+}
+
+a.aToolTipCloseBtn {
+	display: block;
+	height: 18px;
+	width: 18px;
+	text-indent: -9999px;
+	outline: none;
+	position: absolute;
+	top: -15px;
+	right: -15px;
+	margin: 2px;
+	padding: 4px;
+}
+
+/* Tooltip hover END */
+
+/* === CTA Menu Styling END === */
+
+/* === Heading Banner Styling START === */
+
+.headingBanner
+{
+	height: 193px;
+	border-top: 4px solid #fff;
+	background-color: #CD202C; /* Default colour, will usually be overwritten by what is in Banner.xml */
+}
+
+.headingImage
+{
+	height: 193px;
+	border-left: 4px solid #fff;
+	width: 484px;
+	float: right;
+    background-image: url("/images/banner/rotating/rotating-image-4.jpg");
+}
+
+.headingImage img
+{
+	border: 0px;
+	width: 100%;
+}
+
+.headingColourBlock
+{
+	height: 73px;
+	float: left;
+}
+
+.headingColourBlock img
+{
+	padding: 0px;
+	position: absolute;
+	bottom: 0px;
+}
+
+.headingColourBlock a img
+{
+	border: 0px;
+}
+
+.headingColourBlock h2
+{
+	color: #fff;
+	font-size: 120%;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	font-weight: normal;
+	padding: 10px 5px 3px 20px;
+}
+
+.headingColourBlock h1
+{
+	color: #fff;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	font-weight: normal;
+	font-size: 225%;
+	padding: 0px 5px 3px 20px;
+    font-family: 'Akzidenz Super';
+}
+
+.headingColourBlock h1 a
+{
+	color: #fff;
+	text-decoration: none;
+}
+
+/* === Heading Banner Styling END === */
+
+/* === Breadcrumb Styling START === */
+
+.breadcrumb
+{
+	font-size: 85%;
+	margin-left: -20px;
+}
+
+.breadcrumb a:link,
+.breadcrumb a:visited,
+.breadcrumb a:hover,
+.breadcrumb a:active
+{
+	border: none;
+}
+
+.content .breadcrumb ul
+{
+	padding: 0px;
+	margin: 0px;
+    margin-left: 15px;
+	border: 0px;
+}
+
+.breadcrumb ul li
+{
+	list-style-image: none;
+	list-style-type: none;
+	display: inline;
+	padding: 0px;
+	padding-right: 15px;
+	background: transparent url('/images/breadcrumb.png') no-repeat top right; 
+	margin-right: 6px;
+}
+
+.breadcrumb ul li:last-child
+{
+	background: none;
+}
+
+.breadcrumb ul li:last-child a
+{
+	border-bottom: 0px;
+}
+
+/* === Breadcrumb Styling END === */
+
+/* === Side Navigation Styling START === */
+
+.sideNavigation { background-color: #fff; font-family: 'Akzidenz Medium'; color: #787878; border-right: 1px solid #aaa; }
+
+.sideNavigation ul
+{
+	border: 0px;
+	padding: 0px;
+	margin: 0px;
+    padding-top: 0px;
+}
+
+.sideNavigation .childLinks ul li
+{
+	border-bottom: 1px solid #fff;
+}
+
+/* Styling for when JavaScript is turned off START */
+
+#lhsAccordion, #_ctl0_SideNavigation1_lhsUpLinks
+{
+    padding: 0;
+}
+
+#lhsAccordion h3, #_ctl0_SideNavigation1_lhsUpLinks h3 
+{
+    background: #fff none 0 0 no-repeat;
+    border-bottom: 1px solid #aaa;
+    font-weight: normal;
+    border-radius: 0px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-top: 1px solid #ffffff;
+    cursor: pointer;
+    position: relative;
+    margin-top: 1px;
+    zoom: 1;
+    padding: 0px;
+    margin: 0px;
+}
+
+#lhsAccordion h3 a, #_ctl0_SideNavigation1_lhsUpLinks h3 a 
+{
+    display: block;
+    font-size: 10.5pt;
+    font-family: 'Akzidenz Medium';
+    font-weight: normal;
+    padding: 15px;
+    text-decoration: none;
+    color: #555;
+}
+
+#lhsAccordion h3 a:hover,
+#lhsAccordion h3 a:active,
+#_ctl0_SideNavigation1_lhsUpLinks h3 a:hover,
+#_ctl0_SideNavigation1_lhsUpLinks h3 a:active 
+{
+    background-color: #F6F6F6;
+    background-image: none;
+    color: #000;
+}
+
+/*Childless Links with h3 and class */
+#lhsAccordion h4  { background: #F6F6F6 !important; border-radius: 0px; -moz-border-radius: 0px; -webkit-border-radius: 0px; border-top: 1px solid #ffffff; border-bottom: 1px solid #ffffff; cursor: pointer; position: relative; margin-top: 1px; zoom: 1; padding: 0px; margin: 0px; }
+#lhsAccordion h4 a { display: block; font-size: 9pt; font-family: 'Akzidenz Super'; padding: 10px 5px 10px 10px; text-decoration: none; color: #555; }
+#lhsAccordion h4 a:hover { background: #E2D9C5; }
+
+.childLinks li 
+{
+	border-radius: 0px; 
+	-moz-border-radius: 0px; 
+	-webkit-border-radius: 0px; 
+	background-color: #fff; 
+    font-family: 'Akzidenz Regular';
+	border-top: 0; 
+	position: relative; 
+	top: 0px; 
+	/*overflow: auto;*/
+	zoom: 1;
+	border-bottom: 1px solid #fff;
+}
+
+.childLinks li a
+{
+	color: #222222; 
+	font-weight: normal;
+}
+
+/* Styling for when JavaScript is turned off END */
+
+/* Matt's Styling START */
+/* See jquery.ui.accordion.css for more side navigation styling */
+
+#sideNavigation { float: left; width: 22%; padding: 0 0 0 0; margin: 0 0 10px 0; }
+#sideNavigation #SideNavigation1_lhsUpLinks { text-decoration: none; }
+#sideNavigation #SideNavigation1_lhsUpLinks h3 { margin: 2px 0 1px 0; font-size: 9pt; margin: 0; border-bottom: 1px solid #aaa; }
+#sideNavigation #SideNavigation1_lhsUpLinks h3 a { text-decoration: none; padding: 15px; color: #555; display: block; font-size: 10.5pt; font-weight: normal; }
+#sideNavigation #SideNavigation1_lhsUpLinks h3 a:hover { background-color: #F6F6F6; color: #000; }
+#sideNavigation #SideNavigation1_accordionHTML h3 { margin: 0; }
+#sideNavigation #SideNavigation1_accordionHTML h3 a { margin: 0; }
+
+/* Matt's Styling END */
+
+/* === Side Navigation Styling END === */
+
+/* === Footer Styling START === */
+
+.footer
+{
+	background-color: #181818; /* url('/images/footer/microscope.gif') no-repeat bottom right; */
+    color: #aaa;
+	font-size: 90%;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	padding: 20px 0px;
+}
+
+.footer h3
+{
+	font-size: 120%;
+    font-weight: normal;
+    font-family: 'Akzidenz Super';
+    color: #fff;
+    text-transform: uppercase;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.footer p
+{
+	line-height: 0.8;
+}
+
+.footer a:link,
+.footer a:visited,
+.footer a:hover,
+.footer a:active
+{
+	color: #aaa;
+	text-decoration: none;
+	border-bottom: 1px dotted #aaa;
+}
+
+.footer a:hover,
+.footer a:active
+{
+	border-bottom: 1px solid #fff;
+	color: #fff;
+}
+
+.footer ul
+{
+	margin: 0;
+	padding: 0;
+}
+
+.footer li
+{
+	list-style-type: none;
+	padding-bottom: 5px;
+    display: block;
+}
+
+.footer .colSocialMedia 
+{  
+	width: 240px;
+	float: left;
+}
+
+.footer .colSocialMedia li a
+{
+    height: 32px;
+    width: 32px;
+    display: inline-block;
+    border: 0;
+}
+
+.footer .colSocialMedia li
+{
+	padding-right: 10px;
+    display: inline;
+}
+
+.footer .colSocialMedia li a.facebook { background-image: url('/images/social/facebook.png'); }
+.footer .colSocialMedia li a.facebook:hover { background-image: url('/images/social/facebook-hover.png'); }
+.footer .colSocialMedia li a.twitter { background-image: url('/images/social/twitter.png'); }
+.footer .colSocialMedia li a.twitter:hover { background-image: url('/images/social/twitter-hover.png'); }
+.footer .colSocialMedia li a.instagram { background-image: url('/images/social/insta.png'); }
+.footer .colSocialMedia li a.instagram:hover { background-image: url('/images/social/insta-hover.png'); }
+.footer .colSocialMedia li a.linkedin { background-image: url('/images/social/linkedin.png'); }
+.footer .colSocialMedia li a.linkedin:hover { background-image: url('/images/social/linkedin-hover.png'); }
+.footer .colSocialMedia li a.youtube { background-image: url('/images/social/youtube.png'); }
+.footer .colSocialMedia li a.youtube:hover { background-image: url('/images/social/youtube-hover.png'); }
+
+.footer .colQuicklinks 
+{
+	width: 230px;
+	float: left;     
+}
+
+.footer .colEnquiries 
+{ 
+	width: 230px;    
+	float: left;
+	padding-left: 15px;
+}
+
+.copyright
+{
+	background-color: #333;
+    color: #aaa;
+	padding-left: 1.2em;
+    padding-top: 0.8em;
+	font-size: 80%;
+	height: 2em;
+}
+
+/* === Footer Styling END === */
+
+/* === CAPTCHA Styling START === */
+
+
+.captchaTable 
+{
+	border: 1px solid #999;
+	background-color: #fff;
+}
+
+.captchaTable td a:link
+{
+	border: 0px;
+}
+
+.captchaTable td.randomImage
+{
+	border: 2px solid #666;
+}
+
+.captchaTable td img
+{
+	padding: 2px;
+	border: 0px;
+	margin: 0px;
+}
+
+.captchaText
+{
+	font-size: 85%;
+	color: #666;
+	margin-bottom: 0px;
+}
+
+.captchaLink
+{
+	display: none;
+}
+
+/* === CAPTCHA Styling END === */
+
+.content .payment-methods { margin-bottom: 0; margin-top: 30px; }
+.content .payment-methods img { border: 0; margin: 0; padding-right: 10px; }
+
+/* === Search Results Styling START === */
+.content .searchResults { border-top: 1px dotted #E2D9C5; overflow: hidden; }
+.content .searchResults ul { margin: 0px; padding: 0px; }
+.content .searchResults ul li { background: none; border-left: 4px solid #E2D9C5; padding: 5px 0 10px 20px; margin-top: 15px; border-bottom: 1px dotted #E2D9C5; font-size: 12px; list-style-image: none; list-style-type: none; }
+.content .searchResults h3 { font-size: 15px; padding-bottom: 5px; margin: 0; }
+.content .searchResults p { margin: 0; padding-bottom: 5px; }
+
+.content #ContentMain_pnlSearch .dlForm { padding-bottom: 10px; }
+
+.featureSuggestions p
+{
+	margin: 0;
+	padding: 2px 5px;
+}
+
+a.addSearchSuggestion img
+{
+	padding-right: 5px;
+	vertical-align: middle;
+}
+
+.pagination 
+{
+	margin: 30px 0;
+	float: left;
+}
+
+.pagination a 
+{
+	padding: 5px 8px;
+	background: #F6F6F6;
+	margin-right: 5px;
+}
+
+.pagination a:link 
+{
+	border: 0px;
+	border-bottom: 0px;
+}
+
+.pagination a:hover, 
+.pagination a.next:hover,
+.pagination a.previous:hover
+{
+	background: #E5DCC6;
+}
+
+.pagination a:link.active,
+.pagination a:visited.active,
+.pagination a:hover.active,
+.pagination a:active.active
+{
+	color: #fff;
+	border-bottom: 0px;
+	background-color: #776f65;
+	font-family: 'Akzidenz Super';
+}
+
+.content .pagination a:link,
+.content .pagination a:visited,
+.content .pagination a:hover,
+.content .pagination a:active
+{
+	border-bottom: 0px;
+}
+
+.phonebookLink
+{
+	 text-align: right;
+	 padding-bottom: 5px;
+}
+
+/* === Search Results Styling END === */
+
+/* === jQuery Pager Styling START === */
+
+ul.simplePagerNav { margin: 0px; padding: 0px; }
+ul.simplePagerNav li { margin-right: 5px; float: left; display:block; border: 0px; padding: 0px; }
+ul.simplePagerNav li a { padding: 5px 8px; background: #F6F6F6; }
+ul.simplePagerNav li a:link { border: 0px; }
+ul.simplePagerNav li a:hover, 
+ul.simplePagerNav li.next a:hover,
+ul.simplePagerNav li.previous a:hover  { background: #E5DCC6; }
+ul.simplePagerNav li.currentPage a { background: #776f65; color: #fff;  }
+ul.simplePagerNav li.disabled a { color: #999;  }
+ul.simplePagerNav li.disabled a:hover { background: #F6F6F6; color: #999; }
+
+ul.simplePagerNav li.nav,
+ul.simplePagerNav li.previous,
+ul.simplePagerNav li.next { margin-right: 5px; padding: 0px; border: 0px; }
+
+/* === jQuery Pager Styling END === */
+
+/* Good Practice START */
+
+.ratingStar 
+{
+	width: 18px;
+	height: 16px;
+	cursor: pointer;
+	display: block;
+	background-repeat: no-repeat;
+}
+
+.filledRatingStar 
+{
+	background-image: url('/goodpractice/images/FilledStar.png');
+}
+
+.emptyRatingStar 
+{
+	background-image: url('/goodpractice/images/EmptyStar.png');
+}
+
+.savedRatingStar 
+{
+	background-image: url('/goodpractice/images/SavedStar.png');
+}
+
+/* Good Practice ENDS */
+
+/* === CareerHub RSS feed styling START === */
+
+.ch-venue {
+display:none;
+}
+
+.ch-channelTitle {
+display:none;
+}
+
+.ch-itemTitle {
+font-size: 16px;
+}
+
+.ch-itemDescription {
+line-height: 1.7;
+}
+
+.ch-summary {
+margin: 10px 0px 18px 0px;
+}
+
+/* === CareerHub RSS feed styling END === */
+
+/**************************************************************************************************/
+/* Internal App Stylesheet
+/* This stylesheet is used for apps in the main website that have styling which needs to overwrite
+/* elements of the WebAuthors stylesheet so can't go in the main stylesheet
+/**************************************************************************************************/
+
+/* OCS styling START */
+
+.deadlineDue, .deadlineDue a
+{
+    color: Red;
+    font-weight: bold;
+}
+
+.deadlinePassed, .deadlinePassed a
+{
+    color: Gray;
+}
+
+.ocsDefaultButton div
+{
+    border: 1px solid #b7c9cb;
+    margin: 15px 175px 15px 0px;
+    padding: 15px;
+    background: url(/ocs/images/default_button_dtol.gif) repeat-x top;
+}
+
+.ocsDefaultButton div:hover
+{
+    background: url(/ocs/images/default_button_ltod.gif) repeat-x bottom;
+}
+
+.ocsDefaultButton h2
+{
+    padding: 0px;
+    margin: 0px;
+    font-size: 150%;
+}
+
+.ocsDefaultButton p
+{
+    font-style: italic;
+    color: Gray;
+    margin: 0px;
+    padding: 0px;
+}
+
+.ocsModuleHeader
+{
+    margin: 0px;
+    padding: 6px 0px 5px 0px;
+}
+
+.ocsModuleHeader a
+{
+    text-decoration: none;
+}
+
+.ocsFeedbackFilesIcon
+{
+    padding: 3px;
+    margin: 0px;
+    float: left;
+}
+
+.ocsFeedbackFilesLinkButton
+{
+    float: left;
+    margin-top: 8px;
+    padding: 3px;
+}
+
+.ocsFeedbackFilesLinkButtonSmall
+{
+    float: left;
+    padding: 3px;
+}
+
+.ocsFeedbackFilesDelete
+{
+    padding: 3px;
+    margin: 0px;
+    margin-top: 2px;
+    margin-bottom: 3px;
+}
+
+.ocsLateSubmission
+{
+    padding: 0px;
+    margin: 0px;
+}
+
+.ocsDeadlineApproaching
+{
+	margin-top: -8px; 
+	padding-top: 0px;
+}
+
+.ocsDeadlineApproaching img
+{
+	margin: 0px; 
+	margin-right: 5px; 
+	margin-bottom: -2px;
+	border: 0px;
+}
+
+.ocsHelpIcon
+{
+	float:right;
+	clear:right;
+	margin-bottom:5px;
+}
+
+.ocsHelpIcon img
+{
+	padding: 0px;
+	margin: 0px;
+	margin-right: 5px;
+	float: left;
+}
+
+.ocsSearchIcon img
+{
+	float: left;
+	padding: 0px;
+	margin: 0px;
+	margin-right: 5px;
+}
+
+
+.ocsMessageError
+{
+    border: 1px solid #FF0000; 
+    background-color: #FFCDCD; 
+    padding: 20px;
+    margin: 20px;
+}
+
+.ocsMessageWarn
+{
+    border: 1px solid #FFCE00; 
+    background-color: #FFF5CC; 
+    padding: 20px;
+    margin: 20px;
+}
+
+.ocsMessageOk
+{
+    border: 1px solid #00FF00; 
+    background-color: #DCFFDC; 
+    padding: 20px;
+    margin: 20px;
+}
+
+.content .ocsAssignmentList li
+{
+    list-style: none;
+    padding-left: 20px;
+}
+
+.content .ocsSubmissionTabs
+{
+    float: left;
+    width: 100px;
+    border: 1px solid #ddd;
+    border-right: 0px;
+}
+
+.content .ocsSubmissionTabs li a
+{
+    margin: 4px;
+    width: 75px;
+    height: 30px;
+    padding: 10px 10px 5px 10px; 
+}
+
+.content .ocsSubmissionInfoPanel
+{
+    margin-left: 100px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    padding: 0px 15px 15px 15px;
+    min-height: 160px;
+}
+
+.draftFile td,
+.draftFile td a
+{
+    color: Gray;
+}
+
+/* OCS styling END */
+
+/*
+ * jQuery UI Accordion 1.8.14
+ *
+ * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Accordion#theming
+ */
+/* IE/Win - Fix animation bug - #4615 */
+
+.ui-accordion .ui-accordion-header { border-radius:0px; -moz-border-radius:0px; -webkit-border-radius:0px; border-top: 1px solid #ffffff; border-bottom: 1px solid #ffffff; cursor: pointer; position: relative; margin-top: 1px; zoom: 1; padding: 0px; margin: 0px; }
+.ui-accordion .ui-accordion-li-fix { display: inline; }
+.ui-accordion .ui-accordion-header-active { border: 0 !important; }
+.ui-accordion .ui-accordion-header a { display: block; font-size: 14px; font-weight: normal; font-family: 'Akzidenz Medium'; padding: 10px 5px 10px 20px; text-decoration: none; color: #555; }
+.ui-accordion .ui-accordion-header .ui-icon { position: absolute; left: .5em; top: 50%; margin-top: -8px; }
+.ui-accordion .ui-accordion-content { border-radius: 0px; -moz-border-radius: 0px; -webkit-border-radius: 0px; background-color: #F6F6F6; border-top: 0; margin-top: -2px; position: relative; top: 1px; overflow: auto; display: none; zoom: 1; }
+.ui-accordion .ui-accordion-content a { font-size: 14px; color: #222222; font-weight: normal; }
+.ui-accordion .ui-accordion-content-active { display: block; }
+.ui-accordion .ui-state-active { background-color: #F6F6F6 !important; border-left: 4px solid #CD202C !important; }
+.ui-accordion .ui-accordion-header-active { border-left: 4px solid #CD202C !important; }
+
+#lhsAccordion { padding: 0px 10px 10px 10px; }
+#lhsAccordion h3 { outline: none; }
+#lhsAccordion ul li a { padding-left: 21px; padding-bottom: 5px; padding-top: 5px; display: block; text-decoration: none; color: #555; }
+#lhsAccordion ul li:first-child a { border-top: 1px solid #fff; }
+#lhsAccordion ul li:last-child a { border-bottom: 1px solid #aaa; }
+#lhsAccordion ul li a:hover { color: #000; display: block; border-left: 4px solid #CD202C; }
+
+.pay-now-button {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: white; /* Default background color */
+  border: 2px solid #000; /* Black border */
+  text-decoration: none;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 5px; /* Optional: Rounded corners */
+  transition: background-color 0.3s, color 0.3s;
+  margin-top: 20px;
+}
+
+.pay-now-button:hover {
+  background-color: #4b0082; /* Dark purple */
+  color: #fff; /* Ensure text remains readable */
+}
+
+
+	</style>
+	<title>University of Essex Student Online Payment System </title>
+</head>
 </head>
 
-<body class="bg-gray-50">
+<!-- <body class="bg-gray-50">
     <nav class="header">
         <div class="logo-container">
             <img src="{% static 'images/iconWomen.jpg' %}" class="logo-img">
@@ -143,8 +3881,578 @@
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
+   
     <button id="backToTopBtn" class="back-to-top-btn">↑ Back to Top</button>
-</body>
+</body> --></body>
+<div class="wrapper">
 
+            <div class="logoBanner">
+    <a href="http://www.essex.ac.uk" id="aEssexLink"><img src="{% static 'images/uoe-logo-digital-black.png' %}" id="imgEssexLogo" alt="University of Essex" /></a>
+    <a id="accessibility" class="hidden" href="#pageContent" accesskey="s">Skip to main content</a>
+    <!-- Search Box START -->
+    <form action="https://www.essex.ac.uk/search" method="get">
+        <div class="siteSearch" id="mainsearchbar">
+            <a class="searchQuickLink" href="/students">Students</a>
+            <a class="searchQuickLink" href="/staff">Staff</a>
+            <label for="ssKeywords" class="hidden">Search this site:</label>
+            <input name="ctl00$tbSearch" type="text" id="query" accesskey="q" class="form-control" autocomplete="off" /><input type="submit" name="ctl00$ssSubmit" value="" id="ssSubmit" />
+        </div>
+    </form>
+    <!-- Search Box END -->
+</div><div class="callToAction">
+    <div id="callToActionTabs" class="callToActionTabs">
+        <a href="https://www.essex.ac.uk/subjects"><span>Courses</span></a>
+        <a href="https://www.essex.ac.uk/essex-living"><span>Life</span></a>
+        <a href="https://www.essex.ac.uk/visit-us"><span>Visit us</span></a>
+        <a href="https://www.essex.ac.uk/research"><span>Research</span></a>
+    </div>
+</div>
+
+<div id="megaMenu" class="megaMenu">
+    <ul class="menu">
+        <li class="fullwidth"><a href="https://www.essex.ac.uk/our-university" class="drop">About</a></li>
+        <li class="fullwidth"><a href="https://www.essex.ac.uk/departments" class="drop">Departments</a></li>
+        <li class="fullwidth"><a href="https://www.essex.ac.uk/news" class="drop">News</a></li>
+        <li class="fullwidth"><a href="https://www.essex.ac.uk/events" class="drop">Events</a></li>
+        <li class="fullwidth"><a href="https://www.essex.ac.uk/contact" class="drop">Contact</a></li>
+        <li class="fullwidth"><a href="/vacancies" class="drop">Jobs</a></li>
+        <li class="fullwidth"><a href="http://alumni.essex.ac.uk" class="drop">Alumni</a></li>
+        <li class="fullwidth"><a href="https://www.essex.ac.uk/business" class="drop">Business</a></li>
+    </ul>
+</div>
+
+<div style="clear: both;"></div><div id="HeadingBanner1_articleHeader" class="headingBanner" style="background-color: #4C5CC5">
+    <div class="headingColourBlock" style="float: left;">
+        <div style="position: relative; height: 193px;">
+            <div style="position: absolute; bottom: 10px; width: 460px;">
+                <h2>Welcome to</h2>
+				<h1><a href="#" class="title">Webpay</a></h1>
+            </div>
+        </div>
+    </div>
+    <div class="headingImage" style="float: right;">
+        <a href="#" id="HeadingBanner1_aBanner"><img src="https://www1.essex.ac.uk/images/banner/rotating/rotating-image-4.jpg" id="HeadingBanner1_imgBanner" width="464" height="193" /></a>
+    </div>
+</div><div id="sideNavigation" class="sideNavigation">
+    <div id="SideNavigation1_lhsUpLinks">
+	</div>
+    <div id="SideNavigation1_accordionHTML">
+		<div id='lhsAccordion'>
+			<h3><a href='/'>Home</a></h3>
+            <h3><a href='#'>About the University</a></h3>
+          
+            <h3><a href='#'>Courses</a></h3>
+
+            <h3><a href='#'>Open days</a></h3>
+
+            <h3><a href='#'>Departments</a></h3>
+
+            <h3><a href='#'>Research</a></h3>
+
+            <h3><a href='#'>Business</a></h3>
+
+            <h3><a href='#'>Life at Essex</a></h3>
+
+            <h3><a href='#'>Maps</a></h3>
+
+            <h3><a href='#'>Job vacancies</a></h3>
+
+            <h3><a href='#'>Key dates</a></h3>
+
+        </div>
+    </div>
+</div>
+
+            <div id="divContent" class="content">
+            
+                <div class="breadcrumb">
+    <ul id="Breadcrumb1_blBreadCrumb">
+        <li><a href="https://www.essex.ac.uk/">home</a></li>
+        <li><a href="https://www1.essex.ac.uk/webpay">webpay</a></li>
+    </ul>
+</div>
+
+                <a name="pageContent"></a>
+
+                <h1>University of Essex Student Payment System</h1>
+
+                <p>
+                    The following invoices are currently on your account. This page also shows the due date by which each invoice should be paid.
+                    <strong>When nominating an invoice to pay, please make sure you are selecting the earliest instalment.</strong>
+                </p>
+
+                <h3>Invoice details</h3>
+
+                <form name="AccountDetails" method="post" action="https://www1.essex.ac.uk/webpay/submitpayment.asp">
+
+                    <table class="tableForm">
+	                    
+                        <tr>
+		                    <th>Type</th>
+		                    <th>Our ref</th>
+		                    <th>Invoice</th>
+		                    <th>Description</th>
+		                    <th>Due date</th>
+		                    <th>Outstanding<br /> amount</th>
+		                    <th>Paying in full?</th>
+		                    <th>Amount you will pay</th>
+	                    </tr>
+
+
+	
+                        <tr>
+		                    <td>Invoice</td>
+		                    <td>40328879</td>
+		                    <td>KXA199254-553420</td>
+		                    <td>Saltmarsh Pastures First installment</td>
+		                    
+			                    <td>01/10/2024</td>
+		                    
+		                    <td nowrap>2,900</td>
+
+		                    <td>
+
+		                    
+			                    
+                                <input type="hidden" name="invno0" value="40328879" />
+			                    <input type="hidden" name="doctype0" value="SI" />
+			                    <input type="hidden" name="line0" value="1" />
+			                    <input type="hidden" name="description0" value="SALTMARSH HOUSE Damage Charge Hole in wall (attempted to be repaired and needs rectifying): œ110.28 + œ20.00" />
+			                    <input type="hidden" name="duedate0" value="13/08/2024" />
+			                    <input type="hidden" name="totamount0" value="130.28" />
+			                    <input type="hidden" name="amount0" value="0" />
+			                    <input type="hidden" name="length0" value="0" />
+			                    <input type="hidden" name="amountopay0" value="130.28" />
+			                    <input type="hidden" name="amountofdiscount0" value="0.00" />
+			                    <input type="hidden" name="thediscount0" value="0" />
+			                    <input type="hidden" name="ischecked" value="no" />
+
+                                <!-- TODO - redo how the below is done - does not need to be written by script -->
+			                    <script type="text/javascript">
+                                    document.write("<input type='checkbox' NAME='discyesno0' onClick='subchkbox(0)' /></td>");
+				                    document.write("<TD><input type='hidden' NAME='netdiscount0' value='0.00' onFocus='noinput(0)' /><input type='text' NAME='specamount0' value='0.00' onFocus='valinput(0)' SIZE='8' /></td>");
+			                    </script>
+
+			                    
+
+
+	                    </tr>
+
+                        <tr>
+		                    <td>Invoice</td>
+		                    <td>40328879</td>
+		                    <td>KXA199254-553420</td>
+		                    <td>SALTMARSH HOUSE Damage Charge Hole in wall (attempted to be repaired and needs rectifying)</td>
+		                    
+			                    <td>13/08/2024</td>
+		                    
+		                    <td nowrap>130.28</td>
+
+		                    <td>
+
+		                    
+			                    
+                                <input type="hidden" name="invno0" value="40328879" />
+			                    <input type="hidden" name="doctype0" value="SI" />
+			                    <input type="hidden" name="line0" value="1" />
+			                    <input type="hidden" name="description0" value="SALTMARSH HOUSE Damage Charge Hole in wall (attempted to be repaired and needs rectifying): œ110.28 + œ20.00" />
+			                    <input type="hidden" name="duedate0" value="13/08/2024" />
+			                    <input type="hidden" name="totamount0" value="130.28" />
+			                    <input type="hidden" name="amount0" value="0" />
+			                    <input type="hidden" name="length0" value="0" />
+			                    <input type="hidden" name="amountopay0" value="130.28" />
+			                    <input type="hidden" name="amountofdiscount0" value="0.00" />
+			                    <input type="hidden" name="thediscount0" value="0" />
+			                    <input type="hidden" name="ischecked" value="no" />
+
+                                <!-- TODO - redo how the below is done - does not need to be written by script -->
+			                    <script type="text/javascript">
+                                    document.write("<input type='checkbox' NAME='discyesno0' onClick='subchkbox(0)' /></td>");
+				                    document.write("<TD><input type='hidden' NAME='netdiscount0' value='0.00' onFocus='noinput(0)' /><input type='text' NAME='specamount0' value='0.00' onFocus='valinput(0)' SIZE='8' /></td>");
+			                    </script>
+
+			                    
+
+
+	                    </tr>
+
+
+
+
+                        <tr>
+		                    <td>Invoice</td>
+		                    <td>40328879</td>
+		                    <td>KXA199254-553420</td>
+		                    <td>LLB with Business Autumn term installment</td>
+		                    
+			                    <td>01/10/2024</td>
+		                    
+		                    <td nowrap>7000</td>
+
+		                    <td>
+
+		                    
+			                    
+                                <input type="hidden" name="invno0" value="40328879" />
+			                    <input type="hidden" name="doctype0" value="SI" />
+			                    <input type="hidden" name="line0" value="1" />
+			                    <input type="hidden" name="description0" value="SALTMARSH HOUSE Damage Charge Hole in wall (attempted to be repaired and needs rectifying): œ110.28 + œ20.00" />
+			                    <input type="hidden" name="duedate0" value="13/08/2024" />
+			                    <input type="hidden" name="totamount0" value="130.28" />
+			                    <input type="hidden" name="amount0" value="0" />
+			                    <input type="hidden" name="length0" value="0" />
+			                    <input type="hidden" name="amountopay0" value="130.28" />
+			                    <input type="hidden" name="amountofdiscount0" value="0.00" />
+			                    <input type="hidden" name="thediscount0" value="0" />
+			                    <input type="hidden" name="ischecked" value="no" />
+
+                                <!-- TODO - redo how the below is done - does not need to be written by script -->
+			                    <script type="text/javascript">
+                                    document.write("<input type='checkbox' NAME='discyesno0' onClick='subchkbox(0)' /></td>");
+				                    document.write("<TD><input type='hidden' NAME='netdiscount0' value='0.00' onFocus='noinput(0)' /><input type='text' NAME='specamount0' value='0.00' onFocus='valinput(0)' SIZE='8' /></td>");
+			                    </script>
+
+			                    
+
+
+	                    </tr>
+
+
+		    <input type="hidden" name="inputusercode" value="im22017" />
+		    <input type="hidden" name="inputprid" value="MBOWA71105" />
+            <input type="hidden" name="mycount" value="1" />
+            <input type="hidden" name="paytype" value="detail" />
+
+        </table>
+
+        
+
+            <!-- cardholder details -->
+            <h3>Cardholder details</h3>
+
+            <p>Please enter the email address and billing address of the cardholder. The card details will be entered on the next page.</p>
+
+            <table class="tableForm">
+                <caption>Cardholder details</caption>
+                <colgroup>
+                    <col width="35%" />
+                    <col width="65%" />
+                </colgroup>
+                <tr valign="top">
+                    <th>Name: <span class="errorMessage">*</span></th>
+                    <td>
+                        <input type="text" name="txtName" maxlength="50" />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th>Email address: <span class="errorMessage">*</span></th>
+                    <td>
+                        <input type="text" name="txtEmailAddress" maxlength="50" />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th>Address Line 1: <span class="errorMessage">*</span></th>
+                    <td>
+                        <input type="text" name="txtBillingAddressLine1" maxlength="50" />         
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th>Address Line 2:</th>
+                    <td>
+                        <input type="text" name="txtBillingAddressLine2" maxlength="50" />      
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th>Address Line 3:</th>
+                    <td>
+                        <input type="text" name="txtBillingAddressLine3" maxlength="50" />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th>Address Town/City: <span class="errorMessage">*</span></th>
+                    <td>
+                        <input type="text" name="txtBillingAddressTownCity" maxlength="40" />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th>Address Postcode: <span class="errorMessage">*</span><div class="preFilledTextField">(Letters and/or numbers only e.g "AB1 2DE" or "12345")</div></th>
+                    <td>
+                        <input type="text" name="txtBillingAddressPostcode" maxlength="16" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Address Country: <span class="errorMessage">*</span></th>
+                    <td>
+                        <select name="ddlBillingAddressCountry">
+	                        <option value=""></option>
+	                        <option value="004">Afghanistan</option>
+	                        <option value="248">Åland Islands</option>
+	                        <option value="008">Albania</option>
+	                        <option value="012">Algeria</option>
+	                        <option value="016">American Samoa</option>
+	                        <option value="020">Andorra</option>
+	                        <option value="024">Angola</option>
+	                        <option value="660">Anguilla</option>
+	                        <option value="010">Antarctica</option>
+	                        <option value="028">Antigua and Barbuda</option>
+	                        <option value="032">Argentina</option>
+	                        <option value="051">Armenia</option>
+	                        <option value="533">Aruba</option>
+	                        <option value="036">Australia</option>
+	                        <option value="040">Austria</option>
+	                        <option value="031">Azerbaijan</option>
+	                        <option value="044">Bahamas</option>
+	                        <option value="048">Bahrain</option>
+	                        <option value="050">Bangladesh</option>
+	                        <option value="052">Barbados</option>
+	                        <option value="112">Belarus</option>
+	                        <option value="056">Belgium</option>
+	                        <option value="084">Belize</option>
+	                        <option value="204">Benin</option>
+	                        <option value="060">Bermuda</option>
+	                        <option value="064">Bhutan</option>
+	                        <option value="068">Bolivia (Plurinational State of)</option>
+	                        <option value="535">Bonaire, Sint Eustatius and Saba</option>
+	                        <option value="070">Bosnia and Herzegovina</option>
+	                        <option value="072">Botswana</option>
+	                        <option value="074">Bouvet Island</option>
+	                        <option value="076">Brazil</option>
+	                        <option value="086">British Indian Ocean Territory</option>
+	                        <option value="096">Brunei Darussalam</option>
+	                        <option value="100">Bulgaria</option>
+	                        <option value="854">Burkina Faso</option>
+	                        <option value="108">Burundi</option>
+	                        <option value="132">Cabo Verde</option>
+	                        <option value="116">Cambodia</option>
+	                        <option value="120">Cameroon</option>
+	                        <option value="124">Canada</option>
+	                        <option value="136">Cayman Islands</option>
+	                        <option value="140">Central African Republic</option>
+	                        <option value="148">Chad</option>
+	                        <option value="152">Chile</option>
+	                        <option value="156">China</option>
+	                        <option value="162">Christmas Island</option>
+	                        <option value="166">Cocos (Keeling) Islands</option>
+	                        <option value="170">Colombia</option>
+	                        <option value="174">Comoros</option>
+	                        <option value="178">Congo</option>
+	                        <option value="180">Congo, Democratic Republic of the</option>
+	                        <option value="184">Cook Islands</option>
+	                        <option value="188">Costa Rica</option>
+	                        <option value="384">Côte d'Ivoire</option>
+	                        <option value="191">Croatia</option>
+	                        <option value="531">Curaçao</option>
+	                        <option value="196">Cyprus</option>
+	                        <option value="203">Czechia</option>
+	                        <option value="208">Denmark</option>
+	                        <option value="262">Djibouti</option>
+	                        <option value="212">Dominica</option>
+	                        <option value="214">Dominican Republic</option>
+	                        <option value="218">Ecuador</option>
+	                        <option value="818">Egypt</option>
+	                        <option value="222">El Salvador</option>
+	                        <option value="226">Equatorial Guinea</option>
+	                        <option value="232">Eritrea</option>
+	                        <option value="233">Estonia</option>
+	                        <option value="748">Eswatini</option>
+	                        <option value="231">Ethiopia</option>
+	                        <option value="238">Falkland Islands (Malvinas)</option>
+	                        <option value="234">Faroe Islands</option>
+	                        <option value="242">Fiji</option>
+	                        <option value="246">Finland</option>
+	                        <option value="250">France</option>
+	                        <option value="254">French Guiana</option>
+	                        <option value="258">French Polynesia</option>
+	                        <option value="260">French Southern Territories</option>
+	                        <option value="266">Gabon</option>
+	                        <option value="270">Gambia</option>
+	                        <option value="268">Georgia</option>
+	                        <option value="276">Germany</option>
+	                        <option value="288">Ghana</option>
+	                        <option value="292">Gibraltar</option>
+	                        <option value="300">Greece</option>
+	                        <option value="304">Greenland</option>
+	                        <option value="308">Grenada</option>
+	                        <option value="312">Guadeloupe</option>
+	                        <option value="316">Guam</option>
+	                        <option value="320">Guatemala</option>
+	                        <option value="831">Guernsey</option>
+	                        <option value="324">Guinea</option>
+	                        <option value="624">Guinea</option>
+	                        <option value="328">Guyana</option>
+	                        <option value="332">Haiti</option>
+	                        <option value="334">Heard Island and McDonald Islands</option>
+	                        <option value="336">Holy See</option>
+	                        <option value="340">Honduras</option>
+	                        <option value="344">Hong Kong</option>
+	                        <option value="348">Hungary</option>
+	                        <option value="352">Iceland</option>
+	                        <option value="356">India</option>
+	                        <option value="360">Indonesia</option>
+	                        <option value="368">Iraq</option>
+	                        <option value="372">Ireland</option>
+	                        <option value="833">Isle of Man</option>
+	                        <option value="376">Israel</option>
+	                        <option value="380">Italy</option>
+	                        <option value="388">Jamaica</option>
+	                        <option value="392">Japan</option>
+	                        <option value="832">Jersey</option>
+	                        <option value="400">Jordan</option>
+	                        <option value="398">Kazakhstan</option>
+	                        <option value="404">Kenya</option>
+	                        <option value="296">Kiribati</option>
+	                        <option value="410">Korea, Republic of</option>
+	                        <option value="414">Kuwait</option>
+	                        <option value="417">Kyrgyzstan</option>
+	                        <option value="418">Lao People's Democratic Republic</option>
+	                        <option value="428">Latvia</option>
+	                        <option value="422">Lebanon</option>
+	                        <option value="426">Lesotho</option>
+	                        <option value="430">Liberia</option>
+	                        <option value="434">Libya</option>
+	                        <option value="438">Liechtenstein</option>
+	                        <option value="440">Lithuania</option>
+	                        <option value="442">Luxembourg</option>
+	                        <option value="446">Macao</option>
+	                        <option value="450">Madagascar</option>
+	                        <option value="454">Malawi</option>
+	                        <option value="458">Malaysia</option>
+	                        <option value="462">Maldives</option>
+	                        <option value="466">Mali</option>
+	                        <option value="470">Malta</option>
+	                        <option value="584">Marshall Islands</option>
+	                        <option value="474">Martinique</option>
+	                        <option value="478">Mauritania</option>
+	                        <option value="480">Mauritius</option>
+	                        <option value="175">Mayotte</option>
+	                        <option value="484">Mexico</option>
+	                        <option value="583">Micronesia (Federated States of)</option>
+	                        <option value="498">Moldova, Republic of</option>
+	                        <option value="492">Monaco</option>
+	                        <option value="496">Mongolia</option>
+	                        <option value="499">Montenegro</option>
+	                        <option value="500">Montserrat</option>
+	                        <option value="504">Morocco</option>
+	                        <option value="508">Mozambique</option>
+	                        <option value="104">Myanmar</option>
+	                        <option value="516">Namibia</option>
+	                        <option value="520">Nauru</option>
+	                        <option value="524">Nepal</option>
+	                        <option value="528">Netherlands</option>
+	                        <option value="540">New Caledonia</option>
+	                        <option value="554">New Zealand</option>
+	                        <option value="558">Nicaragua</option>
+	                        <option value="562">Niger</option>
+	                        <option value="566">Nigeria</option>
+	                        <option value="570">Niue</option>
+	                        <option value="574">Norfolk Island</option>
+	                        <option value="807">North Macedonia</option>
+	                        <option value="580">Northern Mariana Islands</option>
+	                        <option value="578">Norway</option>
+	                        <option value="512">Oman</option>
+	                        <option value="586">Pakistan</option>
+	                        <option value="585">Palau</option>
+	                        <option value="275">Palestine, State of</option>
+	                        <option value="591">Panama</option>
+	                        <option value="598">Papua New Guinea</option>
+	                        <option value="600">Paraguay</option>
+	                        <option value="604">Peru</option>
+	                        <option value="608">Philippines</option>
+	                        <option value="612">Pitcairn</option>
+	                        <option value="616">Poland</option>
+	                        <option value="620">Portugal</option>
+	                        <option value="630">Puerto Rico</option>
+	                        <option value="634">Qatar</option>
+	                        <option value="638">Réunion</option>
+	                        <option value="642">Romania</option>
+	                        <option value="646">Rwanda</option>
+	                        <option value="652">Saint Barthélemy</option>
+	                        <option value="654">Saint Helena, Ascension and Tristan da Cunha</option>
+	                        <option value="659">Saint Kitts and Nevis</option>
+	                        <option value="662">Saint Lucia</option>
+	                        <option value="663">Saint Martin (French part)</option>
+	                        <option value="666">Saint Pierre and Miquelon</option>
+	                        <option value="670">Saint Vincent and the Grenadines</option>
+	                        <option value="882">Samoa</option>
+	                        <option value="674">San Marino</option>
+	                        <option value="678">Sao Tome and Principe</option>
+	                        <option value="682">Saudi Arabia</option>
+	                        <option value="686">Senegal</option>
+	                        <option value="688">Serbia</option>
+	                        <option value="690">Seychelles</option>
+	                        <option value="694">Sierra Leone</option>
+	                        <option value="702">Singapore</option>
+	                        <option value="534">Sint Maarten (Dutch part)</option>
+	                        <option value="703">Slovakia</option>
+	                        <option value="705">Slovenia</option>
+	                        <option value="090">Solomon Islands</option>
+	                        <option value="706">Somalia</option>
+	                        <option value="710">South Africa</option>
+	                        <option value="239">South Georgia and the South Sandwich Islands</option>
+	                        <option value="728">South Sudan</option>
+	                        <option value="724">Spain</option>
+	                        <option value="144">Sri Lanka</option>
+	                        <option value="729">Sudan</option>
+	                        <option value="740">Suriname</option>
+	                        <option value="744">Svalbard and Jan Mayen</option>
+	                        <option value="752">Sweden</option>
+	                        <option value="756">Switzerland</option>
+	                        <option value="158">Taiwan, Province of China</option>
+	                        <option value="762">Tajikistan</option>
+	                        <option value="834">Tanzania, United Republic of</option>
+	                        <option value="764">Thailand</option>
+	                        <option value="626">Timor Leste</option>
+	                        <option value="768">Togo</option>
+	                        <option value="772">Tokelau</option>
+	                        <option value="776">Tonga</option>
+	                        <option value="780">Trinidad and Tobago</option>
+	                        <option value="788">Tunisia</option>
+	                        <option value="792">Turkey</option>
+	                        <option value="795">Turkmenistan</option>
+	                        <option value="796">Turks and Caicos Islands</option>
+	                        <option value="798">Tuvalu</option>
+	                        <option value="800">Uganda</option>
+	                        <option value="804">Ukraine</option>
+	                        <option value="784">United Arab Emirates</option>
+	                        <option value="826">United Kingdom of Great Britain and Northern Ireland</option>
+	                        <option value="581">United States Minor Outlying Islands</option>
+	                        <option value="840">United States of America</option>
+	                        <option value="858">Uruguay</option>
+	                        <option value="860">Uzbekistan</option>
+	                        <option value="548">Vanuatu	Formerly New Hebrides</option>
+	                        <option value="862">Venezuela (Bolivarian Republic of)</option>
+	                        <option value="704">Viet Nam</option>
+	                        <option value="092">Virgin Islands (British)</option>
+	                        <option value="850">Virgin Islands (U.S.)</option>
+	                        <option value="876">Wallis and Futuna</option>
+	                        <option value="732">Western Sahara</option>
+	                        <option value="887">Yemen</option>
+	                        <option value="894">Zambia</option>
+	                        <option value="716">Zimbabwe</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><div class="right"><span class="errorMessage">*</span> required</div></td>
+                </tr>
+            </table>
+
+        <!-- <p><input type="submit" value="Pay Now" name="btnSubmit" onclick="checkpayment()" size="20" class="button right" /></p> -->
+        <a href="{% url 'vendor:userSettingsPage' %}" class="pay-now-button button right">Pay Now</a>
+
+
+        <br />
+        <br />
+
+        <!-- terms and conditions -->
+
+        <p class="preFilledTextField">Terms and Conditions</p>
+
+        <ul class="preFilledTextField">
+            <li>Cards accepted: Visa, Mastercard, American Express.</li>
+            <li>Please note that we unfortunately cannot accept card payment from the following countries: Cuba, Iran, North Korea, Crimea Region (Ukraine/Russia), Syrian Arab Republic.</li>
+            <li>University of Essex V.A.T. number: GB594794865.</li>
+            <li>See the help page for more <a href="https://www1.essex.ac.uk/payment/terms-and-conditions-help.aspx">terms and conditions</a>.</li>
+        </ul>             
 </html>
+
